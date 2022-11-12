@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: CollecttibleTestItemData
   m_EditorClassIdentifier: 
   prefabData: {fileID: 1912642872173965584, guid: 4afccf0e45c51c641933d59f0da02023, type: 3}
+  icon: {fileID: 2800000, guid: c66acd3384abc974285d13df01817637, type: 3}

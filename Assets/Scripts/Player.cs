@@ -2,29 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CollItem
-{
-    int length;
-    ItemData itemData;
-    public CollItem(int length, ItemData itemData){
-        this.length = length;
-        this.itemData = itemData;
-    }
-    public int GetLength(){
-        return length;
-    }
-    public void SetLength(int num){
-        length = num;
-    }
-    public ItemData GetItemData(){
-        return itemData;
-    }
-    public void SetItemData(ItemData data){
-        itemData = data;
-    }
-}
-
-
 public class Player : MonoBehaviour {
     [SerializeField] float movementSpeed;
     // [SerializeField] bool isPickup = false;
@@ -34,8 +11,12 @@ public class Player : MonoBehaviour {
     [SerializeField] Animator animator;
     float slowDown = 1;
     [SerializeField] private GameObject collectibleItem = null;
-    [SerializeField] private Dictionary<string, CollItem> itemsInBag = new Dictionary<string, CollItem>();
+    [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
 
+    private Inventory inventory;
+    private void Start() {
+        inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
+    }
     // Update is called once per frame
     private void Update() {
         isWalking = true;
@@ -87,23 +68,15 @@ public class Player : MonoBehaviour {
             if(collectibleItem){
                 
                 string name = collectibleItem.GetComponent<Collectible>().GetName();
-                int numberItem = itemsInBag.ContainsKey(name)? itemsInBag[name].GetLength() + 1 : 1;
-                // int numberItem = 1;
-                if(numberItem == 1){
-                    itemsInBag.Add(name, new CollItem(numberItem, collectibleItem.GetComponent<Collectible>().itemData));
-                }else{
-                    itemsInBag[name].SetLength(numberItem);
-                }
-                // collectibleItem.SetActive(false);
+                inventory.Add(name, collectibleItem);
                 Destroy(collectibleItem);
                 collectibleItem = null;
-                
-                Debug.Log(itemsInBag["a"].GetItemData());
             }
         }
-        catch (System.Exception)
+        catch (System.Exception e)
         {   
-            throw;
+            // throw;
+            Debug.Log(e);
         }
     }
 }
