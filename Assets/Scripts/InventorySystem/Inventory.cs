@@ -92,16 +92,20 @@ public class Inventory : MonoBehaviour
         Destroy(buttonObj);
     }
     public void SelectItemAt(int index){
-        index -= 1;
-        string itemName = itemNameInInventory[index];
-        GameObject selected = itemInButtons[itemName].button;//get button game object
+        try{
+            index -= 1;
+            string itemName = itemNameInInventory[index];
+            GameObject selected = itemInButtons[itemName].button;//get button game object
 
-        GameObject selectedBorder = selected.transform.GetChild(2).gameObject;
+            GameObject selectedBorder = selected.transform.GetChild(2).gameObject;
 
-        if(previousSelectedBorder)              previousSelectedBorder.SetActive(false);
-        
-        selectedBorder.SetActive(true);
+            if(previousSelectedBorder)              previousSelectedBorder.SetActive(false);
+            
+            selectedBorder.SetActive(true);
 
-        previousSelectedBorder = selectedBorder;
+            previousSelectedBorder = selectedBorder;
+        }catch (System.Exception e){
+            Debug.Log(e);
+        }
     }
 }
