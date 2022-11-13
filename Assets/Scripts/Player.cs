@@ -34,6 +34,7 @@ public class Player : MonoBehaviour {
         RotateBasedOnDirection(normalizeMovement);
 //control mechanic
         if(Input.GetKey(KeyCode.E)) PickUpItem();
+        inventory.InventoryControl();
     }
 
     void RotateBasedOnDirection(Vector3 movementDirection){
