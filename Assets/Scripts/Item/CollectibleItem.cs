@@ -19,4 +19,7 @@ public class CollectibleItem
     public void SetItemData(ItemData data){
         itemData = data;
     }
+    public CollectibleItem Clone(){
+        return new CollectibleItem(this.length, this.itemData);
+    }
 }

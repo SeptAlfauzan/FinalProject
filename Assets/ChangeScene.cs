@@ -4,6 +4,13 @@ public class ChangeScene : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private string moveToSceneName;
+    GameObject inventoryObj;
+    Inventory inventory;
+
+    private void Start() {
+        inventoryObj = GameObject.FindGameObjectWithTag("Inventory");
+        inventory = inventoryObj.GetComponent<Inventory>();
+    }
     private bool isOnArea = false;
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") isOnArea = true;
@@ -21,5 +28,11 @@ public class ChangeScene : MonoBehaviour
     }
     private void MoveScene(string sceneName){
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void SaveCurrentData(){
+        string sceneName =  SceneManager.GetActiveScene().name;
+
+        inventory.StoreToSceneInfo(sceneName);
     }
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-class ItemButton{
+public class ItemButton{
     public CollectibleItem dataItem;
     public GameObject button;
     public ItemButton(CollectibleItem dataItem, GameObject button){
         this.dataItem = dataItem;    
         this.button = button;
-
+        
         SetIcon(this.dataItem.GetItemData().icon);
     }
     private void SetIcon(Texture image){
@@ -28,33 +28,46 @@ class ItemButton{
     public int GetItemLength(){
         return dataItem.GetLength();
     }
+
+    public ItemButton Clone(){
+        return new ItemButton(this.dataItem, this.button);
+    }
 }
 
 public class Inventory : MonoBehaviour
 {
     private Dictionary<string, CollectibleItem> items = new Dictionary<string, CollectibleItem>();
-    [SerializeField] private Dictionary<string, ItemButton> itemInButtons = new Dictionary<string, ItemButton>();
+    [SerializeField] private Dictionary<string, ItemButton> itemInButtons = new Dictionary<string, ItemButton>();//items that will display in HUD game
     [SerializeField] private List<string> itemNameInInventory;//to keep tract every item name in inventory
     [SerializeField] private int maximumInventory;
     [SerializeField] private GameObject buttonItemInventory;
+    [SerializeField] private SceneInfo sceneInfoData;
     private int indexStarted = 0;
     private GameObject previousSelectedBorder;
+
+    private void Start() {
+        //get all data from scene info aka temporary storage in order to save data when moving to different scene
+        this.items = sceneInfoData.items;
+        this.itemNameInInventory = sceneInfoData.itemNameInInventory;
+        // Render item in button data to inventory UI
+        RenderItemToUI();
+    }
     public void SetItems(Dictionary<string, CollectibleItem> items){
         this.items = items; 
     }
-    public void Add(string key, GameObject item){
-        int numberItem = items.ContainsKey(key)? items[key].GetLength() + 1 : 1;
+    public void Add(string key, Collectible collectible){
+        int numberItem = this.items.ContainsKey(key)? items[key].GetLength() + 1 : 1;
                 // int numberItem = 1;
         if(numberItem == 1){
-            CollectibleItem collectibleItem = new CollectibleItem(numberItem, item.GetComponent<Collectible>().itemData);
-            items.Add(key, collectibleItem);
+            CollectibleItem collectibleItem = new CollectibleItem(numberItem, collectible.itemData);
+            this.items.Add(key, collectibleItem);
             //intansiasi button inventory
             GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
-            itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
-            itemNameInInventory.Add(key);
+            this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
+            this.itemNameInInventory.Add(key);
         }else{
-            items[key].SetLength(numberItem);
-            itemInButtons[key].SetItemLength(numberItem);
+            this.items[key].SetLength(numberItem);
+            this.itemInButtons[key].SetItemLength(numberItem);
         }
     }
     public Dictionary<string, CollectibleItem> GetItems(){
@@ -107,5 +120,25 @@ public class Inventory : MonoBehaviour
         }catch (System.Exception e){
             Debug.Log(e);
         }
+    }
+
+    public void StoreToSceneInfo(string sceneName){
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+
+        sceneInfoData.SetCurrentSceneData(sceneName, player.transform.position, this.items, this.itemInButtons, this.itemNameInInventory);
+    }
+    public void RenderItemToUI(){
+    
+       foreach (string key in itemNameInInventory)
+       {
+        int numberItem = this.items.ContainsKey(key)? items[key].GetLength() : 1;
+
+        CollectibleItem collectibleItem = new CollectibleItem(1, sceneInfoData.items[key].GetItemData());
+        //intansiasi button inventory
+        GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
+        this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
+
+        if(numberItem > 1) this.itemInButtons[key].SetItemLength(numberItem);
+       }
     }
 }
