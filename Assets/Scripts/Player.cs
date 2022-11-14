@@ -67,9 +67,10 @@ public class Player : MonoBehaviour {
         try
         {
             if(collectibleItem){
-                
+                Collectible collectible = collectibleItem.GetComponent<Collectible>();
+
                 string name = collectibleItem.GetComponent<Collectible>().GetName();
-                inventory.Add(name, collectibleItem);
+                inventory.Add(name, collectible);
                 Destroy(collectibleItem);
                 collectibleItem = null;
             }

@@ -976,6 +976,7 @@ MonoBehaviour:
   itemNameInInventory: []
   maximumInventory: 6
   buttonItemInventory: {fileID: 8088699141588548997, guid: de5ed34259cb84b4f82da38136716263, type: 3}
+  sceneInfoData: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
 --- !u!222 &1357287361
 CanvasRenderer:
   m_ObjectHideFlags: 0
