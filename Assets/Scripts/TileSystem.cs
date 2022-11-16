@@ -10,39 +10,47 @@ public class TileSystem : MonoBehaviour
     public Tilemap tilemap;
 
     [SerializeField] GameObject player;
-    [SerializeField] GameObject obj;
+    [SerializeField] GameObject plantObject;
     [SerializeField] int maximumPlantingDistance;
 
     private bool isNearPlayer;
     private Vector3Int currentCell;
     private Vector3Int activeCell;
     private Vector3 activeCellPos;
+    private bool canPlanting = false;
 
     // Update is called once per frame
+    private void Update(){
+        plantObject = player.GetComponent<Planting>().GetItemInHand();
+        if(plantObject) canPlanting = true;
+    }
     private void OnMouseOver() {
         // Debug.Log("asdasd");
         // return;
-        Vector3 mouse = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-        if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-        {
-            currentCell = SnapCoordinateToGrid(hit.point);//this also swap z to x position
-            Vector3 currentCellPosition = SnapObjCoordinateToGrid(hit.point);
-            
-            float mouseToPlayerMagnitude = Mathf.Floor((currentCellPosition - player.transform.position).magnitude);
+        if(canPlanting){
+            Vector3 mouse = Input.mousePosition;
+            Ray castPoint = Camera.main.ScreenPointToRay(mouse);
+            RaycastHit hit;
+            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
+            {
+                currentCell = SnapCoordinateToGrid(hit.point);//this also swap z to x position
+                Vector3 currentCellPosition = SnapObjCoordinateToGrid(hit.point);
+                
+                float mouseToPlayerMagnitude = Mathf.Floor((currentCellPosition - player.transform.position).magnitude);
 
-            if(currentCell != activeCell && mouseToPlayerMagnitude <= maximumPlantingDistance){
-                // set the new tile
-                tilemap.SetTile(currentCell, tile);
-                // erase activeCell
-                tilemap.SetTile(activeCell, null);
-                // save the new position for next frame
-                activeCell = currentCell;
-                activeCellPos = currentCellPosition;
+                if(currentCell != activeCell && mouseToPlayerMagnitude <= maximumPlantingDistance){
+                    // set the new tile
+                    tilemap.SetTile(currentCell, tile);
+                    // erase activeCell
+                    tilemap.SetTile(activeCell, null);
+                    // save the new position for next frame
+                    activeCell = currentCell;
+                    activeCellPos = currentCellPosition;
+                }
+
             }
-
         }
+
     }
     private Vector3Int SwapZToXposition(Vector3 originPos){
         return Vector3Int.FloorToInt(new Vector3(originPos.x, originPos.z, originPos.y));
@@ -66,18 +74,20 @@ public class TileSystem : MonoBehaviour
         // Vector3 tilePos = grid.WorldToCell(worldPos);
         // Debug.Log(tilePos);
         // obj.transform.position = tilePos;
-
-        Vector3 mouse = Input.mousePosition;
-        Ray castPoint = Camera.main.ScreenPointToRay(mouse);
-        RaycastHit hit;
-        if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
-        {
-            Vector3 gridpos = SnapObjCoordinateToGrid(hit.point);
-            
-            // Vector3 gridpos = SwapZToXposition(activeCell);
-            obj.transform.position = activeCellPos + new Vector3(0,0.5f,0);
-            Debug.Log(activeCell);
+        if(canPlanting){
+            Vector3 mouse = Input.mousePosition;
+            Ray castPoint = Camera.main.ScreenPointToRay(mouse);
+            RaycastHit hit;
+            if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
+            {
+                Vector3 gridpos = SnapObjCoordinateToGrid(hit.point);
+                // Vector3 gridpos = SwapZToXposition(activeCell);
+                plantObject = Instantiate(plantObject);
+                plantObject.transform.position = activeCellPos + new Vector3(0,0.5f,0);
+                Debug.Log(activeCell);
+            }
         }
+
 
     }
 }

@@ -1,18 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 public class Planting : MonoBehaviour
 {
-    [SerializeField] TileSystem tile;
-    void Start()
-    {
-        
+    [SerializeField] private GameObject itemInHand;
+    public GameObject GetItemInHand(){
+        return itemInHand;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetItemInHand(GameObject itemInHand){
+        this.itemInHand = itemInHand;
     }
 }

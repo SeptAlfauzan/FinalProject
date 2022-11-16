@@ -7,6 +7,8 @@ TagManager:
   - Collectible
   - Inventory
   - InventoryItemButton
+  - Collectible Seed
+  - Plant
   layers:
   - Default
   - TransparentFX
