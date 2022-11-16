@@ -44,8 +44,10 @@ public class Inventory : MonoBehaviour
     [SerializeField] private SceneInfo sceneInfoData;
     private int indexStarted = 0;
     private GameObject previousSelectedBorder;
+    private GameObject player;
 
     private void Start() {
+        player = GameObject.FindGameObjectWithTag("Player");
         //get all data from scene info aka temporary storage in order to save data when moving to different scene
         this.items = sceneInfoData.items;
         this.itemNameInInventory = sceneInfoData.itemNameInInventory;
@@ -109,22 +111,22 @@ public class Inventory : MonoBehaviour
             index -= 1;
             string itemName = itemNameInInventory[index];
             GameObject selected = itemInButtons[itemName].button;//get button game object
-
             GameObject selectedBorder = selected.transform.GetChild(2).gameObject;
+            
 
-            if(previousSelectedBorder)              previousSelectedBorder.SetActive(false);
+            if(previousSelectedBorder) previousSelectedBorder.SetActive(false);
             
             selectedBorder.SetActive(true);
-
             previousSelectedBorder = selectedBorder;
+
+            GameObject itemGameObject = itemInButtons[itemName].dataItem.GetItemData().prefabData;
+            if(CheckItemPrefabIsPlant(itemGameObject)) player.GetComponent<Planting>().SetItemInHand(itemGameObject);
+
         }catch (System.Exception e){
             Debug.Log(e);
         }
     }
-
     public void StoreToSceneInfo(string sceneName){
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-
         sceneInfoData.SetCurrentSceneData(sceneName, player.transform.position, this.items, this.itemInButtons, this.itemNameInInventory);
     }
     public void RenderItemToUI(){
@@ -140,5 +142,9 @@ public class Inventory : MonoBehaviour
 
         if(numberItem > 1) this.itemInButtons[key].SetItemLength(numberItem);
        }
+    }
+    private bool CheckItemPrefabIsPlant(GameObject gameObject){
+        Debug.Log("select item" + gameObject.tag);
+        return gameObject.tag == "Plant"? true : false; 
     }
 }

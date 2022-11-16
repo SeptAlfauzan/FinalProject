@@ -52,14 +52,17 @@ public class Player : MonoBehaviour {
 
 
     private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Collectible") collectibleItem = other.gameObject;
+        string tag = other.gameObject.tag;
+        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = other.gameObject;
     }
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Collectible") collectibleItem = other.gameObject;
+        string tag = other.gameObject.tag;
+        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = other.gameObject;
     }
 
     private void OnTriggerExit(Collider other) {    
-        if(other.gameObject.tag == "Collectible") collectibleItem = null;
+        string tag = other.gameObject.tag;
+        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = null;
     }
 
     // interaction
