@@ -1176,12 +1176,24 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.916505
+      value: -15.26
       objectReference: {fileID: 0}
     - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.52460337
+      value: -0.69
       objectReference: {fileID: 0}
     - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1213,6 +1225,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4000013634387022, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115141802941007427, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
+      propertyPath: growTime
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115141802941007427, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
+      propertyPath: isMaxSize
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1723,7 +1743,7 @@ MonoBehaviour:
   grid: {fileID: 66739996}
   tilemap: {fileID: 323963586}
   player: {fileID: 926750721}
-  plantObj: {fileID: 517469098}
+  plantObject: {fileID: 0}
   maximumPlantingDistance: 4
 --- !u!1001 &1013239924
 PrefabInstance:

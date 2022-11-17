@@ -12,9 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31781c14f7f9b5b47b257ca02c0421a2, type: 3}
   m_Name: Scene Info
   m_EditorClassIdentifier: 
-  itemNameInInventory:
-  - Tomato Seed Bag
-  - Tomato Seed Bag
-  - Tomato Seed Bag
-  - Tomato Seed Bag
+  itemNameInInventory: []
   GameTime: 0
