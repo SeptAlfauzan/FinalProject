@@ -18,7 +18,7 @@ public class TileSystem : MonoBehaviour
     private Vector3Int activeCell;
     private Vector3 activeCellPos;
     private bool canPlanting = false;
-
+    public PlantLocationData plantLocationData;
     // Update is called once per frame
     private void Update(){
         plantObject = player.GetComponent<Planting>().GetItemInHand();

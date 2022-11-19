@@ -9,6 +9,7 @@ TagManager:
   - InventoryItemButton
   - Collectible Seed
   - Plant
+  - Planting Location
   layers:
   - Default
   - TransparentFX
@@ -16,7 +17,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Loading
   - 
   - 
   - 
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Loading Screen
+    uniqueID: 3134068887
     locked: 0
