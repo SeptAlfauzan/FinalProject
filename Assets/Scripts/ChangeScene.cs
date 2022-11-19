@@ -26,6 +26,12 @@ public class ChangeScene : MonoBehaviour
         plants = GameObject.FindGameObjectsWithTag("Plant");
         Debug.Log(plants.Length);
     }
+    private void Update() {
+        if(plants.Length != GameObject.FindGameObjectsWithTag("Plant").Length) plants = GameObject.FindGameObjectsWithTag("Plant");
+        if(isOnArea){
+            if(Input.GetKey(KeyCode.E)) MoveScene(moveToSceneName); 
+        }
+    }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") isOnArea = true;
     }
@@ -34,11 +40,6 @@ public class ChangeScene : MonoBehaviour
     }
     private void OnTriggerExit(Collider other) {
         if(other.gameObject.tag == "Player") isOnArea = false;
-    }
-    private void Update() {
-        if(isOnArea){
-            if(Input.GetKey(KeyCode.E)) MoveScene(moveToSceneName); 
-        }
     }
     private void MoveScene(string sceneName){
         SaveCurrentData();
@@ -56,11 +57,18 @@ public class ChangeScene : MonoBehaviour
         int index = 0;
         plantLocationData.Reset();//to avoid redundant plant
 
+        List<PlantedPlant> tempPlantedPlants = new List<PlantedPlant>();
         foreach (GameObject plantedPlant in plants){
             Plants plantData = plantedPlant.GetComponent<Plants>();
-            plantLocationData.AddPlantedLocation(new PlantedPlant(plants[index].transform.position, plantedPlant.GetComponent<Plants>().plantItemData.prefabData, plantData.plantAge));
+
+            tempPlantedPlants.Add(
+                new PlantedPlant(plants[index].transform.position,
+                plantedPlant.GetComponent<Plants>().plantItemData.prefabData,
+                plantData.plantAge,
+                plantData.harvestTime));
             index++;
         }
+        plantLocationData.SetPlantedLocation(tempPlantedPlants);
     }
 
     private void InstantiateSavedPlant(){
@@ -70,8 +78,14 @@ public class ChangeScene : MonoBehaviour
 
             foreach (PlantedPlant plantedPlant in plantedPlants){
                 GameObject newPlant = Instantiate(plantedPlant.GetPlant());
+                Debug.Log("planted age "+plantedPlant.GetPlantAge());
+
+
                 newPlant.transform.position = plantedPlant.GetLocation();
                 newPlant.GetComponent<Plants>().plantAge = plantedPlant.GetPlantAge();
+                newPlant.GetComponent<Plants>().harvestTime = plantedPlant.GetHarvestAge();
+                // newPlant.GetComponent<Plants>().tempHarvestTime = plantedPlant.GetHarvestAge();
+
             }
         }
         catch (System.Exception exception)

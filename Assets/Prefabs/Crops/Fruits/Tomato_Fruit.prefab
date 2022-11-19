@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2285954144971627555}
   m_Layer: 0
   m_Name: Tomato_Fruit
-  m_TagString: Collectible
+  m_TagString: Collectible Fruit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
