@@ -22,8 +22,6 @@ public class ItemButton{
 
         GameObject numberTextContainerObj = this.button.transform.GetChild(1).gameObject;
         numberTextContainerObj.SetActive(true);//set active gameobject
-     
-        Debug.Log(numberTextContainerObj.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = length.ToString());
     }
     public int GetItemLength(){
         return dataItem.GetLength();

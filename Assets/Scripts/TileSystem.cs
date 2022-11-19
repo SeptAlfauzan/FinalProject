@@ -18,6 +18,7 @@ public class TileSystem : MonoBehaviour
     private Vector3Int activeCell;
     private Vector3 activeCellPos;
     private bool canPlanting = false;
+    [SerializeField] private Vector3 plantingOffset;
     public PlantLocationData plantLocationData;
     // Update is called once per frame
     private void Update(){
@@ -69,11 +70,7 @@ public class TileSystem : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        // Vector3 mousePos = Input.mousePosition;
-        // Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
-        // Vector3 tilePos = grid.WorldToCell(worldPos);
-        // Debug.Log(tilePos);
-        // obj.transform.position = tilePos;
+        
         if(canPlanting){
             Vector3 mouse = Input.mousePosition;
             Ray castPoint = Camera.main.ScreenPointToRay(mouse);
@@ -81,9 +78,8 @@ public class TileSystem : MonoBehaviour
             if (Physics.Raycast(castPoint, out hit, Mathf.Infinity))
             {
                 Vector3 gridpos = SnapObjCoordinateToGrid(hit.point);
-                // Vector3 gridpos = SwapZToXposition(activeCell);
-                plantObject = Instantiate(plantObject);
-                plantObject.transform.position = activeCellPos + new Vector3(0,0.5f,0);
+                plantObject = Instantiate(plantObject, this.transform);
+                plantObject.transform.position = activeCellPos + plantingOffset;
                 Debug.Log(activeCell);
             }
         }

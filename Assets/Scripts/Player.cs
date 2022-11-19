@@ -13,6 +13,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
 
+    public bool canMove = true;
     private Inventory inventory;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
@@ -27,7 +28,7 @@ public class Player : MonoBehaviour {
         slowDown = isWalking?  0.3f : 1;
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;
 
-        this.transform.Translate(movement, Space.World);
+        if(canMove) this.transform.Translate(movement, Space.World);
         AnimateRunOrWalk(movement.magnitude, isWalking);
 
         Vector3 normalizeMovement = movement.normalized;
@@ -53,16 +54,16 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerStay(Collider other) {
         string tag = other.gameObject.tag;
-        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = other.gameObject;
+        if( tag == "Collectible"|| tag == "Collectible Seed" ||tag == "Collectible Fruit") collectibleItem = other.gameObject;
     }
     private void OnTriggerEnter(Collider other) {
         string tag = other.gameObject.tag;
-        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = other.gameObject;
+        if( tag == "Collectible"|| tag == "Collectible Seed" || tag == "Collectible Fruit") collectibleItem = other.gameObject;
     }
 
     private void OnTriggerExit(Collider other) {    
         string tag = other.gameObject.tag;
-        if( tag == "Collectible"|| tag == "Collectible Seed") collectibleItem = null;
+        if( tag == "Collectible"|| tag == "Collectible Seed" || tag == "Collectible Fruit") collectibleItem = null;
     }
 
     // interaction
@@ -74,8 +75,15 @@ public class Player : MonoBehaviour {
 
                 string name = collectibleItem.GetComponent<Collectible>().GetName();
                 inventory.Add(name, collectible);
+
+                if(collectible.tag == "Collectible Fruit"){
+                    collectible.gameObject.transform.parent.GetComponentInParent<Plants>().ReGrowFruit();
+                }
+
                 Destroy(collectibleItem);
                 collectibleItem = null;
+
+
             }
         }
         catch (System.Exception e)
@@ -84,4 +92,11 @@ public class Player : MonoBehaviour {
             Debug.Log(e);
         }
     }
+
+    // private void OnCollisionEnter(Collision other) {
+    //     if(other.gameObject.tag == "Wall") canMove = false;   
+    // }
+    // private void OnCollisionExit(Collision other) {
+    //     if(other.gameObject.tag == "Wall") canMove = true;   
+    // }
 }
