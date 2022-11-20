@@ -12,12 +12,14 @@ public class ChangeScene : MonoBehaviour
 
     [SerializeField] private GameObject LoadingCanvas;
     [SerializeField] private Image progressBar;
+    [SerializeField] private TextMesh enterText;
+    [SerializeField] private string enterTextString;
     private GameObject[] plants;
     private List<Plants> plantsBehaviour;
     public PlantLocationData plantLocationData;
 
     private void Start() {
-        
+        enterText.text = enterTextString;
         InstantiateSavedPlant();
 
         inventoryObj = GameObject.FindGameObjectWithTag("Inventory");
@@ -29,7 +31,10 @@ public class ChangeScene : MonoBehaviour
     private void Update() {
         if(plants.Length != GameObject.FindGameObjectsWithTag("Plant").Length) plants = GameObject.FindGameObjectsWithTag("Plant");
         if(isOnArea){
+            enterText.gameObject.SetActive(true);
             if(Input.GetKey(KeyCode.E)) MoveScene(moveToSceneName); 
+        }else{
+            enterText.gameObject.SetActive(false);
         }
     }
     private void OnTriggerEnter(Collider other) {

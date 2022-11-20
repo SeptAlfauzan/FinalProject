@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNameInInventory: []
   GameTime: 0
+  dayTime: 6

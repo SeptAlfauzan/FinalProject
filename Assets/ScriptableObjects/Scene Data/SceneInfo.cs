@@ -9,6 +9,7 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public Dictionary<string, ItemButton> itemInButtons = new Dictionary<string, ItemButton>();//items that will display in HUD game
     [SerializeField] public List<string> itemNameInInventory;//to keep tract every item name in inventory
     [SerializeField] public float GameTime;
+    [SerializeField] public float dayTime;
 
     public void Start(){
         // ResetData();
@@ -33,6 +34,10 @@ public class SceneInfo : ScriptableObject {
     private bool CheckThereLastPosScene(string sceneName){
         bool status = items.ContainsKey(sceneName)? true : false;
         return status;
+    }
+
+    public void SetDayTime(float time){
+        this.dayTime = time;
     }
 
     private void ResetData(){
