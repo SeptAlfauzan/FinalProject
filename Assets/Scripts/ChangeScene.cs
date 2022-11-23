@@ -20,7 +20,7 @@ public class ChangeScene : MonoBehaviour
 
     private void Start() {
         enterText.text = enterTextString;
-        InstantiateSavedPlant();
+        if(SceneManager.GetActiveScene().name == "Farm") InstantiateSavedPlant();
 
         inventoryObj = GameObject.FindGameObjectWithTag("Inventory");
         inventory = inventoryObj.GetComponent<Inventory>();
@@ -70,7 +70,9 @@ public class ChangeScene : MonoBehaviour
                 new PlantedPlant(plants[index].transform.position,
                 plantedPlant.GetComponent<Plants>().plantItemData.prefabData,
                 plantData.plantAge,
-                plantData.harvestTime));
+                plantData.harvestTime,
+                plantData.isWatered
+                ));
             index++;
         }
         plantLocationData.SetPlantedLocation(tempPlantedPlants);
@@ -89,8 +91,7 @@ public class ChangeScene : MonoBehaviour
                 newPlant.transform.position = plantedPlant.GetLocation();
                 newPlant.GetComponent<Plants>().plantAge = plantedPlant.GetPlantAge();
                 newPlant.GetComponent<Plants>().harvestTime = plantedPlant.GetHarvestAge();
-                // newPlant.GetComponent<Plants>().tempHarvestTime = plantedPlant.GetHarvestAge();
-
+                newPlant.GetComponent<Plants>().isWatered = plantedPlant.GetWateredStatus();
             }
         }
         catch (System.Exception exception)

@@ -8,7 +8,7 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public Dictionary<string, CollectibleItem> items = new Dictionary<string, CollectibleItem>();
     [SerializeField] public Dictionary<string, ItemButton> itemInButtons = new Dictionary<string, ItemButton>();//items that will display in HUD game
     [SerializeField] public List<string> itemNameInInventory;//to keep tract every item name in inventory
-    [SerializeField] public float GameTime;
+    [SerializeField] public int gameTime;
     [SerializeField] public float dayTime;
 
     public void Start(){
@@ -38,6 +38,9 @@ public class SceneInfo : ScriptableObject {
 
     public void SetDayTime(float time){
         this.dayTime = time;
+    }
+    public void SetGameTime(int time){
+        this.gameTime = time;
     }
 
     private void ResetData(){
