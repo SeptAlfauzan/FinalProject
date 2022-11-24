@@ -67,6 +67,7 @@ public class ChangeScene : MonoBehaviour
 
             tempPlantedPlants.Add(
                 new PlantedPlant(plants[index].transform.position,
+                plants[index].transform.localScale,
                 plantedPlant.GetComponent<Plants>().plantItemData.prefabData,
                 plantData.plantAge,
                 plantData.harvestTime,
@@ -87,6 +88,7 @@ public class ChangeScene : MonoBehaviour
                 GameObject newPlant = Instantiate(plantedPlant.GetPlant());
 
                 newPlant.transform.position = plantedPlant.GetLocation();
+                newPlant.transform.localScale = plantedPlant.GetSize();
                 newPlant.GetComponent<Plants>().plantAge = plantedPlant.GetPlantAge();
                 newPlant.GetComponent<Plants>().harvestTime = plantedPlant.GetHarvestAge();
                 newPlant.GetComponent<Plants>().isWatered = plantedPlant.GetWateredStatus();

@@ -116,13 +116,14 @@ MonoBehaviour:
   maxSize: 2
   harvestTime: 0
   tempHarvestTime: 0
-  maxHarvestTime: 70
+  maxHarvestTime: 14
   isMaxSize: 0
   isMaxHarvestTime: 0
   hasFruit: 0
   plantItemData: {fileID: 11400000, guid: c97a739e3ee00b244a015d1253d265c4, type: 2}
   fruitSpawnPoint: {fileID: 4089643712477536131}
   isWatered: 0
+  lastDayWatered: 0
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
 --- !u!65 &-3689392138344647718
 BoxCollider:

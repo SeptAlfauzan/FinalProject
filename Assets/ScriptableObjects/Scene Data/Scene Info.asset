@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Scene Info
   m_EditorClassIdentifier: 
   itemNameInInventory: []
-  gameTime: 1
-  dayTime: 9.055528
+  gameTime: 50
+  dayTime: 15.96186
   playerStamina: 1

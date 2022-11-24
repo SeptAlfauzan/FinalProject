@@ -12,6 +12,7 @@ public class PlantLocationData : ScriptableObject
         this.plantedPlants.Clear();
     }
     public void SetPlantedLocation(List<PlantedPlant> plantedPlants){
+        Reset();
         this.plantedPlants = plantedPlants;
     }
     public void AddPlantedLocation(PlantedPlant plantedPlant){
