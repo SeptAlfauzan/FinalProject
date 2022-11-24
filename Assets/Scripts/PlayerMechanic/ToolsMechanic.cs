@@ -12,9 +12,12 @@ public class ToolsMechanic : MonoBehaviour
     [SerializeField] private GameObject wateringCan;
     [SerializeField] private GameObject sickle;
     [SerializeField] private string lastUsedAnimation;
+<<<<<<< HEAD
     [SerializeField] private TileSystem tileSystem;
     [SerializeField] private GameObject wateredLocation;
     [SerializeField] private SceneInfo sceneInfo;
+=======
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     // Update is called once per frame
     void Update()
     {
@@ -73,6 +76,7 @@ public class ToolsMechanic : MonoBehaviour
     }
     void UseTool(string actionName){
         isUsingTools = true;
+<<<<<<< HEAD
         
         if(actionName == "sickle"){
             DecreaseStamina(6);
@@ -86,12 +90,18 @@ public class ToolsMechanic : MonoBehaviour
             DecreaseStamina(3);
             AnimateWatering();
         }
+=======
+        if(actionName == "sickle") AnimateSikle();
+        if(actionName == "hoe") AnimateDigging();
+        if(actionName == "water") AnimateWatering();
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     }
     void HideTools(){
         wateringCan.SetActive(false);
         shove.SetActive(false);
         sickle.SetActive(false);
     }
+<<<<<<< HEAD
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Plant") {
             if(isUsingTools && lastUsedAnimation == "Sickle"){
@@ -142,4 +152,6 @@ public class ToolsMechanic : MonoBehaviour
             sceneInfo.playerStamina = currentStamina / 100;
         }
     }
+=======
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
 }

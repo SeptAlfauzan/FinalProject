@@ -26,6 +26,10 @@ public class ChangeScene : MonoBehaviour
         inventory = inventoryObj.GetComponent<Inventory>();
 
         plants = GameObject.FindGameObjectsWithTag("Plant");
+<<<<<<< HEAD
+=======
+        Debug.Log(plants.Length);
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     }
     private void Update() {
         if(plants.Length != GameObject.FindGameObjectsWithTag("Plant").Length) plants = GameObject.FindGameObjectsWithTag("Plant");
@@ -70,8 +74,12 @@ public class ChangeScene : MonoBehaviour
                 plantedPlant.GetComponent<Plants>().plantItemData.prefabData,
                 plantData.plantAge,
                 plantData.harvestTime,
+<<<<<<< HEAD
                 plantData.isWatered,
                 plantData.lastDayWatered
+=======
+                plantData.isWatered
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
                 ));
             index++;
         }
@@ -85,13 +93,21 @@ public class ChangeScene : MonoBehaviour
 
             foreach (PlantedPlant plantedPlant in plantedPlants){
                 GameObject newPlant = Instantiate(plantedPlant.GetPlant());
+<<<<<<< HEAD
+=======
+                Debug.Log("planted age "+plantedPlant.GetPlantAge());
+
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
 
                 newPlant.transform.position = plantedPlant.GetLocation();
                 newPlant.GetComponent<Plants>().plantAge = plantedPlant.GetPlantAge();
                 newPlant.GetComponent<Plants>().harvestTime = plantedPlant.GetHarvestAge();
                 newPlant.GetComponent<Plants>().isWatered = plantedPlant.GetWateredStatus();
+<<<<<<< HEAD
                 newPlant.GetComponent<Plants>().lastDayWatered = plantedPlant.GetLastDayWatered();
 
+=======
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
             }
         }
         catch (System.Exception exception)

@@ -14,7 +14,10 @@ public class Bed : MonoBehaviour
                 if(sceneInfo.dayTime >= 19 || sceneInfo.dayTime <= 1){
                     sceneInfo.gameTime += 1;
                     sceneInfo.dayTime = 6;
+<<<<<<< HEAD
                     sceneInfo.playerStamina = 1;
+=======
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
                     SceneManager.LoadScene("Home");
                 }else{
                     Debug.Log("Masih terlalu dini untuk tidur");

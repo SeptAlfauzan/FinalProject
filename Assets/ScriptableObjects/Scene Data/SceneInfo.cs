@@ -10,7 +10,10 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public List<string> itemNameInInventory;//to keep tract every item name in inventory
     [SerializeField] public int gameTime;
     [SerializeField] public float dayTime;
+<<<<<<< HEAD
     [SerializeField] public float playerStamina = 1;
+=======
+>>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
 
     public void Start(){
         // ResetData();
