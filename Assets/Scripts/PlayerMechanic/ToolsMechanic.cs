@@ -12,6 +12,9 @@ public class ToolsMechanic : MonoBehaviour
     [SerializeField] private GameObject wateringCan;
     [SerializeField] private GameObject sickle;
     [SerializeField] private string lastUsedAnimation;
+    [SerializeField] private TileSystem tileSystem;
+    [SerializeField] private GameObject wateredLocation;
+    [SerializeField] private SceneInfo sceneInfo;
     // Update is called once per frame
     void Update()
     {
@@ -70,13 +73,73 @@ public class ToolsMechanic : MonoBehaviour
     }
     void UseTool(string actionName){
         isUsingTools = true;
-        if(actionName == "sickle") AnimateSikle();
-        if(actionName == "hoe") AnimateDigging();
-        if(actionName == "water") AnimateWatering();
+        
+        if(actionName == "sickle"){
+            DecreaseStamina(6);
+            AnimateSikle();
+        } 
+        if(actionName == "hoe"){
+            DecreaseStamina(6);
+            AnimateDigging();
+        }
+        if(actionName == "water"){
+            DecreaseStamina(3);
+            AnimateWatering();
+        }
     }
     void HideTools(){
         wateringCan.SetActive(false);
         shove.SetActive(false);
         sickle.SetActive(false);
+    }
+    private void OnTriggerEnter(Collider other) {
+        if(other.gameObject.tag == "Plant") {
+            if(isUsingTools && lastUsedAnimation == "Sickle"){
+                //decrease stamina
+                // emit particle
+                // destroy plant game object
+                Destroy(other.gameObject);
+            }
+            if(isUsingTools && lastUsedAnimation == "watering"){
+                //decrease stamina
+                // emit particle
+                other.gameObject.GetComponent<Plants>().Watered();
+                // check if plant position same as watered location
+                // if(!tileSystem) return;
+                // if(other.transform.position == GetWateredPlantLocation()){
+                //     //watered that plant
+                // }
+
+            }
+        }
+    }
+    private void OnTriggerStay(Collider other) {
+        if(other.gameObject.tag == "Plant") {
+            if(isUsingTools && lastUsedAnimation == "Sickle"){
+                // emit particle
+                // destroy plant game object
+                Destroy(other.gameObject);
+            }
+            if(isUsingTools && lastUsedAnimation == "watering"){
+                // emit particle
+                other.gameObject.GetComponent<Plants>().Watered();
+                // check if plant position same as watered location
+                // if(!tileSystem) return;
+                // if(other.transform.position == GetWateredPlantLocation()){
+                //     //watered that plant
+                // }
+
+            }
+        }
+    }
+    private Vector3 GetWateredPlantLocation(){
+        return tileSystem.SnapObjCoordinateToGrid(wateredLocation.transform.position);
+    }
+    private void DecreaseStamina(float staminaUsed){
+        if(sceneInfo.playerStamina > 0){
+            float currentStamina = sceneInfo.playerStamina * 100;
+            currentStamina -= staminaUsed;
+            sceneInfo.playerStamina = currentStamina / 100;
+        }
     }
 }

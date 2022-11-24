@@ -16,12 +16,16 @@ public class Plants : MonoBehaviour
     public PlantItemData plantItemData;
     public GameObject fruitSpawnPoint;
     public bool isWatered;
+    public int lastDayWatered;
+    public SceneInfo sceneInfo;
+
 
     // Start is called before the first frame update
-     private void Start(){
-        if(isMaxSize == false) StartCoroutine(Grow());
-        if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
-
+    private void Start(){
+        if(lastDayWatered != sceneInfo.gameTime) isWatered = false;
+        // if(isMaxSize == false) StartCoroutine(Grow());
+        // if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
+        Debug.Log("is watered status "+isWatered);
         // BUG OVER HERE
         GameObject player = GameObject.FindGameObjectWithTag("Player");     
         Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());
@@ -40,8 +44,38 @@ public class Plants : MonoBehaviour
 
         isMaxSize = true;
     }
-    public void Watered(){
+    private void Growing(){
+        Vector3 startScale = transform.localScale;
+        Vector3 maxScale = new Vector3(maxSize, maxSize,maxSize);
 
+        if(plantAge < growTime){
+            transform.localScale = Vector3.Lerp(startScale, maxScale, plantAge/growTime);
+            plantAge += 2;
+        }else{
+            isMaxSize = true;
+        }
+        isWatered = true;
+        lastDayWatered = sceneInfo.gameTime;
+    }
+    private void GrowingFruit(){ 
+        if(harvestTime < maxHarvestTime){
+            harvestTime += 2;
+            tempHarvestTime += 2;
+        }else{
+            isMaxHarvestTime = true;
+        }
+        isWatered = true;
+        lastDayWatered = sceneInfo.gameTime;
+    }
+    public void Watered(){
+        Debug.Log(isWatered);
+        if(isWatered) return;
+        if(isMaxSize == false){
+            Growing();
+        }
+        if(isMaxHarvestTime == false && !hasFruit){
+            GrowingFruit();
+        }
     }
     private IEnumerator GrowFruit(){ 
         do{
@@ -52,12 +86,11 @@ public class Plants : MonoBehaviour
         while(harvestTime < maxHarvestTime);
         isMaxHarvestTime = true;
     }
-
     public void ReGrowFruit(){
         Debug.Log("Regrow");
         isMaxHarvestTime = false;
         harvestTime = 0;
-        StartCoroutine(GrowFruit());
+        // StartCoroutine(GrowFruit());
     }
 
     private void Update() {
@@ -66,7 +99,6 @@ public class Plants : MonoBehaviour
         // harvestTime = hasFruit? 0 : harvestTime;
 
         // if(isMaxHarvestTime == false) StartCoroutine(GrowFruit());
-
         if(!isMaxSize) return;
         if(!isMaxHarvestTime) return;
         if(hasFruit) return;
