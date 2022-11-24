@@ -5,13 +5,9 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
     // Start is called before the first frame update
+    [SerializeField] AudioClip nightBGM;
+    [SerializeField] AudioClip dayBGM;
     void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
     {
         
     }
