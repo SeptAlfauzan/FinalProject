@@ -13,11 +13,6 @@ MonoBehaviour:
   m_Name: Scene Info
   m_EditorClassIdentifier: 
   itemNameInInventory: []
-<<<<<<< HEAD
   gameTime: 1
   dayTime: 9.055528
   playerStamina: 1
-=======
-  gameTime: 16
-  dayTime: 5.7123394
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041

@@ -16,7 +16,6 @@ public class Plants : MonoBehaviour
     public PlantItemData plantItemData;
     public GameObject fruitSpawnPoint;
     public bool isWatered;
-<<<<<<< HEAD
     public int lastDayWatered;
     public SceneInfo sceneInfo;
 
@@ -27,14 +26,6 @@ public class Plants : MonoBehaviour
         // if(isMaxSize == false) StartCoroutine(Grow());
         // if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
         Debug.Log("is watered status "+isWatered);
-=======
-
-    // Start is called before the first frame update
-     private void Start(){
-        if(isMaxSize == false) StartCoroutine(Grow());
-        if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
-
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
         // BUG OVER HERE
         GameObject player = GameObject.FindGameObjectWithTag("Player");     
         Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());
@@ -53,7 +44,6 @@ public class Plants : MonoBehaviour
 
         isMaxSize = true;
     }
-<<<<<<< HEAD
     private void Growing(){
         Vector3 startScale = transform.localScale;
         Vector3 maxScale = new Vector3(maxSize, maxSize,maxSize);
@@ -86,10 +76,6 @@ public class Plants : MonoBehaviour
         if(isMaxHarvestTime == false && !hasFruit){
             GrowingFruit();
         }
-=======
-    public void Watered(){
-
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     }
     private IEnumerator GrowFruit(){ 
         do{
@@ -100,19 +86,11 @@ public class Plants : MonoBehaviour
         while(harvestTime < maxHarvestTime);
         isMaxHarvestTime = true;
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     public void ReGrowFruit(){
         Debug.Log("Regrow");
         isMaxHarvestTime = false;
         harvestTime = 0;
-<<<<<<< HEAD
         // StartCoroutine(GrowFruit());
-=======
-        StartCoroutine(GrowFruit());
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
     }
 
     private void Update() {
@@ -121,10 +99,6 @@ public class Plants : MonoBehaviour
         // harvestTime = hasFruit? 0 : harvestTime;
 
         // if(isMaxHarvestTime == false) StartCoroutine(GrowFruit());
-<<<<<<< HEAD
-=======
-
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
         if(!isMaxSize) return;
         if(!isMaxHarvestTime) return;
         if(hasFruit) return;

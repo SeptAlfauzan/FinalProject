@@ -122,11 +122,8 @@ MonoBehaviour:
   hasFruit: 0
   plantItemData: {fileID: 11400000, guid: bc4989e02f02f1241a0acc974ff797b2, type: 2}
   fruitSpawnPoint: {fileID: 3294249912687903023}
-<<<<<<< HEAD
   isWatered: 0
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
-=======
->>>>>>> ae88d656ec9449420c1523cf5d5885d0255ce041
 --- !u!65 &3037454168622764513
 BoxCollider:
   m_ObjectHideFlags: 0
