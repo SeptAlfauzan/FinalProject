@@ -85,12 +85,18 @@ public class Inventory : MonoBehaviour
 
     public void InventoryControl(){
         try{
-            if(Input.GetKeyDown(KeyCode.Alpha1)) SelectItemAt(1);
-            if(Input.GetKeyDown(KeyCode.Alpha2)) SelectItemAt(2);
-            if(Input.GetKeyDown(KeyCode.Alpha3)) SelectItemAt(3);
-            if(Input.GetKeyDown(KeyCode.Alpha4)) SelectItemAt(4);
-            if(Input.GetKeyDown(KeyCode.Alpha5)) SelectItemAt(5);
-            if(Input.GetKeyDown(KeyCode.Alpha6)) SelectItemAt(6);
+            if(Input.GetKey(KeyCode.LeftShift)){
+                if(Input.GetKeyDown(KeyCode.Alpha1)) DropItemAt(1);
+            }else{
+                if(Input.GetKeyDown(KeyCode.Alpha1)) SelectItemAt(1);
+                if(Input.GetKeyDown(KeyCode.Alpha2)) SelectItemAt(2);
+                if(Input.GetKeyDown(KeyCode.Alpha3)) SelectItemAt(3);
+                if(Input.GetKeyDown(KeyCode.Alpha4)) SelectItemAt(4);
+                if(Input.GetKeyDown(KeyCode.Alpha5)) SelectItemAt(5);
+                if(Input.GetKeyDown(KeyCode.Alpha6)) SelectItemAt(6);
+            }
+
+
         } catch (System.Exception e){
             Debug.Log(e.Message);
         }
@@ -101,7 +107,6 @@ public class Inventory : MonoBehaviour
         GameObject buttonObj = itemInButtons[itemName].button;//get button game object
         itemNameInInventory.RemoveAt(index); //remove tracked list name  
         Debug.Log(itemNameInInventory);
-
         Destroy(buttonObj);
     }
     public void SelectItemAt(int index){
