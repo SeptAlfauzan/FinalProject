@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87bc37250d1a9bc4aa2f5eaed387955e, type: 3}
+  m_Name: Quest List Info
+  m_EditorClassIdentifier: 
+  quests:
+  - plant: {fileID: 11400000, guid: 7c13d9281ccfd6843bc056b7dee6fe98, type: 2}
+    amountNeed: 10
+    amountGiven: 0
+    dayDeadline: 14
+    completed: 0
+  - plant: {fileID: 11400000, guid: c97a739e3ee00b244a015d1253d265c4, type: 2}
+    amountNeed: 23
+    amountGiven: 0
+    dayDeadline: 24
+    completed: 0

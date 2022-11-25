@@ -92,11 +92,4 @@ public class Player : MonoBehaviour {
             Debug.Log(e);
         }
     }
-
-    // private void OnCollisionEnter(Collision other) {
-    //     if(other.gameObject.tag == "Wall") canMove = false;   
-    // }
-    // private void OnCollisionExit(Collision other) {
-    //     if(other.gameObject.tag == "Wall") canMove = true;   
-    // }
 }
