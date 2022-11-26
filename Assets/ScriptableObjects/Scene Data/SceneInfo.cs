@@ -11,6 +11,7 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public int gameTime;
     [SerializeField] public float dayTime;
     [SerializeField] public float playerStamina = 1;
+    [SerializeField] public bool isRain = false;
 
     public void Start(){
         // ResetData();

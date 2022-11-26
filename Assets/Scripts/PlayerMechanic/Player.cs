@@ -51,7 +51,7 @@ public class Player : MonoBehaviour {
     void AnimateRunOrWalk(float magnitude, bool isWalking){
         animator.SetBool("IsWalking", isWalking);
         animator.SetFloat("Speed", magnitude * 100);
-        CreateDust();
+        // CreateDust();
     }
 
 

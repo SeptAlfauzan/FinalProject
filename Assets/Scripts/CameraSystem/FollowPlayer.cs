@@ -7,19 +7,27 @@ public class FollowPlayer : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] GameObject player;
     [SerializeField] Vector3 offset;
+    [SerializeField] Vector3 zoomOffset;
     [SerializeField] float smoothTime;
     [SerializeField] GameObject planeBoundary;
 
     private Vector3 _currentVelocity = Vector3.zero;
     private Dictionary<string, Vector3> planeBoundaryPos;
-
+    private bool isZooming = false;
     private void Start() {
         if(planeBoundary) planeBoundaryPos = GetBoundaryPositions();
     }    
-
+    public void SetIsZoom(bool status){
+        isZooming = status;
+    }
     // Update is called once per frame
     void LateUpdate(){
-        Vector3 targetPosition = player.transform.position + offset;
+        Vector3 targetPosition;
+        if(isZooming){
+            targetPosition = player.transform.position + offset + zoomOffset;
+        }else{
+            targetPosition = player.transform.position + offset;
+        }
         
         if(planeBoundary){
             targetPosition.z = Mathf.Clamp(targetPosition.z,  planeBoundaryPos["bottom right"].z, planeBoundaryPos["top right"].z);

@@ -13,13 +13,23 @@ public class AudioManager : MonoBehaviour
     float initialVolume = 1;
     float muteVolume = 0;
     Coroutine currentCoroutine;
+    AudioSource currentBgm;
 
     private void Start() {
      StopAllCoroutines();   
     }
     private void Update() {
+        if(sceneInfo.isRain){
+            if(currentBgm) currentBgm.Stop();
+            StopAllCoroutines();
+            if(!rainBGM.isPlaying) rainBGM.Play();
+            return;
+        }else{
+            rainBGM.Stop();
+        }
         if(sceneInfo.dayTime >= 19 || sceneInfo.dayTime <= 2){
             if(!nightBGM.isPlaying){
+                currentBgm = nightBGM;
                 nightBGM.volume = initialVolume;
                 nightBGM.Play();
             }
@@ -27,7 +37,6 @@ public class AudioManager : MonoBehaviour
             if(nightBGM.volume <= initialVolume) currentCoroutine = StartCoroutine(FadeOutAudio(nightBGM, 1));
             
             if(nightBGM.volume == muteVolume + 0.05f){
-                Debug.Log("stop coroutine night");
                 StopCoroutine(currentCoroutine);
                 nightBGM.Stop();
             }
@@ -35,6 +44,7 @@ public class AudioManager : MonoBehaviour
 
         if(sceneInfo.dayTime >= 5 && sceneInfo.dayTime <= 17){
             if(!villageDayBGM.isPlaying){
+                currentBgm = villageDayBGM;
                 villageDayBGM.volume = initialVolume;
                 villageDayBGM.Play();
             }
@@ -42,7 +52,6 @@ public class AudioManager : MonoBehaviour
             if(villageDayBGM.volume == initialVolume) currentCoroutine = StartCoroutine(FadeOutAudio(villageDayBGM, 1));
 
             if(villageDayBGM.volume <= muteVolume + 0.05f){
-                Debug.Log("stop coroutine");
                 StopCoroutine(currentCoroutine);
                 villageDayBGM.Stop();
             }

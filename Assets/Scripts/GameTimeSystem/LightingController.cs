@@ -10,6 +10,7 @@ public class LightingController : MonoBehaviour
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] int timeScale = 10;
+    [SerializeField] GameObject rainParticle;
     private bool dayChanged = false;
     private void Start() {
         TimeOfDay = sceneInfo.dayTime;
@@ -17,6 +18,12 @@ public class LightingController : MonoBehaviour
 
     private void Update()
     {
+        if(sceneInfo.isRain){
+            rainParticle.SetActive(true);
+        }else{
+            rainParticle.SetActive(false);
+        }
+
         if (Preset == null)
             return;
 
@@ -28,6 +35,7 @@ public class LightingController : MonoBehaviour
 
             if(Mathf.Floor(TimeOfDay) == 0 && !dayChanged){
                 dayChanged = true;
+                sceneInfo.isRain = RainWheater();
                 sceneInfo.SetGameTime(sceneInfo.gameTime + 1);//increase gametime (day) when daytime reach 0
             }
             if(Mathf.Floor(TimeOfDay) > 0){
@@ -83,5 +91,9 @@ public class LightingController : MonoBehaviour
             }
         }
     }
-
+    private bool RainWheater(){
+        int rInt = Random.Range(0, 100);
+        Debug.Log(rInt);
+        return rInt >= 60? true : false;
+    }
 }
