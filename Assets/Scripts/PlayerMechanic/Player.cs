@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public ParticleSystem dust;
+
     [SerializeField] float movementSpeed;
     // [SerializeField] bool isPickup = false;
     [SerializeField] bool isWalking = false;
@@ -47,8 +49,9 @@ public class Player : MonoBehaviour {
     }
 
     void AnimateRunOrWalk(float magnitude, bool isWalking){
+        CreateDust();
         animator.SetBool("IsWalking", isWalking);
-        animator.SetFloat("Speed", magnitude * 100);
+            animator.SetFloat("Speed", magnitude * 100);
     }
 
 
@@ -92,6 +95,10 @@ public class Player : MonoBehaviour {
             Debug.Log(e);
         }
     }
+    void CreateDust(){
+        dust.Play();
+    }
+
 
     // private void OnCollisionEnter(Collision other) {
     //     if(other.gameObject.tag == "Wall") canMove = false;   
