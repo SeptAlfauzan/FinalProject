@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour {
+    public ParticleSystem dust;
+
     [SerializeField] float movementSpeed;
     // [SerializeField] bool isPickup = false;
     [SerializeField] bool isWalking = false;
@@ -49,6 +51,7 @@ public class Player : MonoBehaviour {
     void AnimateRunOrWalk(float magnitude, bool isWalking){
         animator.SetBool("IsWalking", isWalking);
         animator.SetFloat("Speed", magnitude * 100);
+        CreateDust();
     }
 
 
@@ -91,5 +94,8 @@ public class Player : MonoBehaviour {
             // throw;
             Debug.Log(e);
         }
+    }
+    void CreateDust(){
+        dust.Play();
     }
 }
