@@ -9,7 +9,6 @@ public class StaminaBarController : MonoBehaviour
     void Start()
     {
         staminaSlider.value = sceneInfo.playerStamina;
-        Debug.Log(sceneInfo.playerStamina);
     }
     // Update is called once per frame
     void Update()

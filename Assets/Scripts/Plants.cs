@@ -25,7 +25,6 @@ public class Plants : MonoBehaviour
         if(lastDayWatered != sceneInfo.gameTime) isWatered = false;
         // if(isMaxSize == false) StartCoroutine(Grow());
         // if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
-        Debug.Log("is watered status "+isWatered);
         // BUG OVER HERE
         GameObject player = GameObject.FindGameObjectWithTag("Player");     
         Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());

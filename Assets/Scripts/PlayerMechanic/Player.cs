@@ -49,9 +49,9 @@ public class Player : MonoBehaviour {
     }
 
     void AnimateRunOrWalk(float magnitude, bool isWalking){
-        CreateDust();
         animator.SetBool("IsWalking", isWalking);
-            animator.SetFloat("Speed", magnitude * 100);
+        animator.SetFloat("Speed", magnitude * 100);
+        CreateDust();
     }
 
 
@@ -98,12 +98,4 @@ public class Player : MonoBehaviour {
     void CreateDust(){
         dust.Play();
     }
-
-
-    // private void OnCollisionEnter(Collision other) {
-    //     if(other.gameObject.tag == "Wall") canMove = false;   
-    // }
-    // private void OnCollisionExit(Collision other) {
-    //     if(other.gameObject.tag == "Wall") canMove = true;   
-    // }
 }
