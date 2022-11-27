@@ -13,8 +13,10 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public float dayTime;
     [SerializeField] public float playerStamina = 1;
     [SerializeField] public bool isRain = false;
-
-
+    
+    [Range(0, 5)]
+    [SerializeField] public int lifePoint;
+  
     public void SetCurrentSceneData(string sceneName, Vector3 lastPos, Dictionary<string, CollectibleItem> items,  Dictionary<string, ItemButton> itemInButtons, List<string> itemNameInInventory){
 
         if(this.CheckThereLastPosScene(sceneName)){

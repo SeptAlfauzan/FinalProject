@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
     public ParticleSystem dust;
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour {
     [SerializeField] private GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
     [SerializeField] ParticleSystem coinParticle;
+    [SerializeField] ParticleSystem rainParticle;
     // SCRIPTABLE OBJ
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] QuestData questListData;
@@ -22,6 +24,7 @@ public class Player : MonoBehaviour {
     private Inventory inventory;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
+        if(sceneInfo.lifePoint <= 0) Debug.Log("Game Over");
     }
     // Update is called once per frame
     private void Update() {
@@ -29,7 +32,7 @@ public class Player : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        if(Input.GetKey(KeyCode.LeftShift)) isWalking = false;
+        if(Input.GetKey(KeyCode.LeftShift) && sceneInfo.playerStamina > 0.15f) isWalking = false;
         slowDown = isWalking?  0.3f : 1;
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;
 
@@ -41,6 +44,8 @@ public class Player : MonoBehaviour {
 //control mechanic
         if(Input.GetKey(KeyCode.E)) PickUpItem();
         inventory.InventoryControl();
+// when player stamina is empty
+        if(sceneInfo.playerStamina * 100 <= 0 || Mathf.Floor(sceneInfo.dayTime) == 2) Exhausted();
     }
     void RotateBasedOnDirection(Vector3 movementDirection){
         if(movementDirection != Vector3.zero){
@@ -113,8 +118,17 @@ public class Player : MonoBehaviour {
         if(questListData.quests[questIndex].amountGiven == questListData.quests[questIndex].amountNeed) return true;
         return false;
     }
+    private void Exhausted(){
+        sceneInfo.gameTime += 2;
+        sceneInfo.dayTime = 6;
+        sceneInfo.playerStamina = 0.7f;
+        sceneInfo.lifePoint -= 1;
+        SceneManager.LoadScene("Home");
+    }
     // PARTICLE SYSTEM
     void CreateDust(){
         dust.Play();
     }
+    
+   
 }

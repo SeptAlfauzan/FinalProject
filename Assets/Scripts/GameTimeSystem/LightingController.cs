@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LightingController : MonoBehaviour
 {
@@ -18,17 +19,14 @@ public class LightingController : MonoBehaviour
 
     private void Update()
     {
-        if(sceneInfo.isRain){
-            rainParticle.SetActive(true);
-        }else{
-            rainParticle.SetActive(false);
-        }
-
+        EmitRainWhenOutsideHome();
         if (Preset == null)
             return;
+        this.GetComponent<Light>().intensity = sceneInfo.isRain? 0.5f : 1;
 
         if (Application.isPlaying)
         {
+            if(SceneManager.GetActiveScene().name == "Home") return; //time dont increase when player is inside house
             TimeOfDay += Time.deltaTime / timeScale;
             TimeOfDay %= 24; //Modulus to ensure always between 0-24
             UpdateLighting(TimeOfDay / 24f);
@@ -49,6 +47,11 @@ public class LightingController : MonoBehaviour
         }
     }
 
+    void EmitRainWhenOutsideHome(){
+        if(sceneInfo.isRain && SceneManager.GetActiveScene().name == "Home") rainParticle.SetActive(false);
+        if(sceneInfo.isRain && SceneManager.GetActiveScene().name != "Home") rainParticle.SetActive(true);
+        if(!sceneInfo.isRain) rainParticle.SetActive(false);
+    }
 
     private void UpdateLighting(float timePercent)
     {

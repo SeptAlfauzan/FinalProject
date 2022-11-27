@@ -14,5 +14,6 @@ public class Quest{
 [CreateAssetMenu(fileName = "Quest List Info")]
 public class QuestData : ScriptableObject
 {
+    public List<ItemData> possibleQuestRequestItem;
     public List<Quest> quests;
 }
