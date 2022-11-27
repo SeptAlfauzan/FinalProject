@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class NpcController : MonoBehaviour
 {
+    [SerializeField] private string textDialog;
+    [SerializeField] private DialogNpcController dialogNpcController;
     private bool isPlayerInteract = false;
-    public GameObject player; 
+    public GameObject player;
+    
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && isPlayerInteract) RotateToPlayer();
+        if(Input.GetKeyDown(KeyCode.E) && isPlayerInteract) StartDialog();
     }
-
+    private void StartDialog(){
+        RotateToPlayer();
+        dialogNpcController.StartDialog(textDialog);
+    }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") isPlayerInteract = true;
     }

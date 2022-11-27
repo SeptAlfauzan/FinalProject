@@ -12,14 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87bc37250d1a9bc4aa2f5eaed387955e, type: 3}
   m_Name: Quest List Info
   m_EditorClassIdentifier: 
+  possibleQuestRequestItem:
+  - {fileID: 11400000, guid: eda5b26eba6bb864c891f3784af7988c, type: 2}
+  - {fileID: 11400000, guid: 7b83fdb79b99b1b48a37f80dba06577f, type: 2}
+  - {fileID: 11400000, guid: 0d9ae9d72a4b37542957a5fd9ee6e446, type: 2}
+  - {fileID: 11400000, guid: 114e1711cee271349a70659bd601b2ab, type: 2}
+  - {fileID: 11400000, guid: 9a859f6528e03b34981372c3f3ba1888, type: 2}
+  - {fileID: 11400000, guid: 52bd48aecd5cd1f4abf55b5c8f0533ef, type: 2}
   quests:
-  - plant: {fileID: 11400000, guid: 7c13d9281ccfd6843bc056b7dee6fe98, type: 2}
+  - itemData: {fileID: 11400000, guid: 9a859f6528e03b34981372c3f3ba1888, type: 2}
     amountNeed: 10
     amountGiven: 0
     dayDeadline: 14
     completed: 0
-  - plant: {fileID: 11400000, guid: c97a739e3ee00b244a015d1253d265c4, type: 2}
-    amountNeed: 23
+  - itemData: {fileID: 11400000, guid: 0d9ae9d72a4b37542957a5fd9ee6e446, type: 2}
+    amountNeed: 5
     amountGiven: 0
     dayDeadline: 24
-    completed: 0
+    completed: 1

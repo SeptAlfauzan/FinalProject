@@ -7,4 +7,5 @@ public class ItemData : ScriptableObject
     // prefab
     public GameObject prefabData;
     public Texture icon;
+    public int prize;
 }

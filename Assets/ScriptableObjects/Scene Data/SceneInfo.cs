@@ -9,13 +9,14 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public Dictionary<string, ItemButton> itemInButtons = new Dictionary<string, ItemButton>();//items that will display in HUD game
     [SerializeField] public List<string> itemNameInInventory;//to keep tract every item name in inventory
     [SerializeField] public int gameTime;
+    [SerializeField] public int money;
     [SerializeField] public float dayTime;
     [SerializeField] public float playerStamina = 1;
-
-    public void Start(){
-        // ResetData();
-    }
-
+    [SerializeField] public bool isRain = false;
+    
+    [Range(0, 5)]
+    [SerializeField] public int lifePoint;
+  
     public void SetCurrentSceneData(string sceneName, Vector3 lastPos, Dictionary<string, CollectibleItem> items,  Dictionary<string, ItemButton> itemInButtons, List<string> itemNameInInventory){
 
         if(this.CheckThereLastPosScene(sceneName)){

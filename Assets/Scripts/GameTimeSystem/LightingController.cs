@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LightingController : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class LightingController : MonoBehaviour
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] int timeScale = 10;
+    [SerializeField] GameObject rainParticle;
     private bool dayChanged = false;
     private void Start() {
         TimeOfDay = sceneInfo.dayTime;
@@ -17,17 +19,21 @@ public class LightingController : MonoBehaviour
 
     private void Update()
     {
+        EmitRainWhenOutsideHome();
         if (Preset == null)
             return;
+        this.GetComponent<Light>().intensity = sceneInfo.isRain? 0.5f : 1;
 
         if (Application.isPlaying)
         {
+            if(SceneManager.GetActiveScene().name == "Home") return; //time dont increase when player is inside house
             TimeOfDay += Time.deltaTime / timeScale;
             TimeOfDay %= 24; //Modulus to ensure always between 0-24
             UpdateLighting(TimeOfDay / 24f);
 
             if(Mathf.Floor(TimeOfDay) == 0 && !dayChanged){
                 dayChanged = true;
+                sceneInfo.isRain = RainWheater();
                 sceneInfo.SetGameTime(sceneInfo.gameTime + 1);//increase gametime (day) when daytime reach 0
             }
             if(Mathf.Floor(TimeOfDay) > 0){
@@ -41,6 +47,11 @@ public class LightingController : MonoBehaviour
         }
     }
 
+    void EmitRainWhenOutsideHome(){
+        if(sceneInfo.isRain && SceneManager.GetActiveScene().name == "Home") rainParticle.SetActive(false);
+        if(sceneInfo.isRain && SceneManager.GetActiveScene().name != "Home") rainParticle.SetActive(true);
+        if(!sceneInfo.isRain) rainParticle.SetActive(false);
+    }
 
     private void UpdateLighting(float timePercent)
     {
@@ -83,5 +94,9 @@ public class LightingController : MonoBehaviour
             }
         }
     }
-
+    private bool RainWheater(){
+        int rInt = Random.Range(0, 100);
+        Debug.Log(rInt);
+        return rInt >= 60? true : false;
+    }
 }

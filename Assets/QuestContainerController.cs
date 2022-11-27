@@ -14,8 +14,8 @@ public class QuestContainerController : MonoBehaviour
             GameObject questListButton = Instantiate(questListButtonPrefab, questListContainer.transform);
             QuestButton questButton = questListButton.GetComponent<QuestButton>();
             
-            questButton.objectiveItemIconObj.texture = item.plant.icon;
-            questButton.objectiveTextObj.text = "Sell " + item.amountNeed + " " + item.plant.name + "s";
+            questButton.objectiveItemIconObj.texture = item.itemData.icon;
+            questButton.objectiveTextObj.text = "Sell " + item.amountNeed + " " + item.itemData.name + "s";
             questButton.targetAchievedTextObj.text = item.amountGiven + "/" + item.amountNeed;
         }
     }
