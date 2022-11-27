@@ -14,7 +14,10 @@ public class Player : MonoBehaviour {
     float slowDown = 1;
     [SerializeField] private GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
-
+    [SerializeField] ParticleSystem coinParticle;
+    // SCRIPTABLE OBJ
+    [SerializeField] SceneInfo sceneInfo;
+    [SerializeField] QuestData questListData;
     public bool canMove = true;
     private Inventory inventory;
     private void Start() {
@@ -39,7 +42,6 @@ public class Player : MonoBehaviour {
         if(Input.GetKey(KeyCode.E)) PickUpItem();
         inventory.InventoryControl();
     }
-
     void RotateBasedOnDirection(Vector3 movementDirection){
         if(movementDirection != Vector3.zero){
             // transform.forward = movementDirection;
@@ -47,14 +49,11 @@ public class Player : MonoBehaviour {
             transform.rotation = Quaternion.Slerp(transform.rotation, rotationTarget, rotationSpeed * Time.deltaTime);
         }
     }
-
     void AnimateRunOrWalk(float magnitude, bool isWalking){
         animator.SetBool("IsWalking", isWalking);
         animator.SetFloat("Speed", magnitude * 100);
         // CreateDust();
     }
-
-
     private void OnTriggerStay(Collider other) {
         string tag = other.gameObject.tag;
         if( tag == "Collectible"|| tag == "Collectible Seed" ||tag == "Collectible Fruit") collectibleItem = other.gameObject;
@@ -63,12 +62,10 @@ public class Player : MonoBehaviour {
         string tag = other.gameObject.tag;
         if( tag == "Collectible"|| tag == "Collectible Seed" || tag == "Collectible Fruit") collectibleItem = other.gameObject;
     }
-
     private void OnTriggerExit(Collider other) {    
         string tag = other.gameObject.tag;
         if( tag == "Collectible"|| tag == "Collectible Seed" || tag == "Collectible Fruit") collectibleItem = null;
     }
-
     // interaction
     public void PickUpItem(){
         try
@@ -77,10 +74,19 @@ public class Player : MonoBehaviour {
                 Collectible collectible = collectibleItem.GetComponent<Collectible>();
 
                 string name = collectibleItem.GetComponent<Collectible>().GetName();
-                inventory.Add(name, collectible);
 
                 if(collectible.tag == "Collectible Fruit"){
-                    collectible.gameObject.transform.parent.GetComponentInParent<Plants>().ReGrowFruit();
+                    coinParticle.Play();
+                    sceneInfo.money += collectible.itemData.prize;
+                    if(collectible.gameObject.transform.parent) collectible.gameObject.transform.parent.GetComponentInParent<Plants>().ReGrowFruit();
+                    // HERE QUEST SYSTEM WILL RUN
+                    int questIndex = CheckItemOnQuestGetIndexQuest(collectible.itemData);
+                    if(questIndex != -1){
+                        questListData.quests[questIndex].amountGiven += 1;
+                        questListData.quests[questIndex].completed = IsQuestFinished(questIndex);
+                    }
+                }else{
+                    inventory.Add(name, collectible);
                 }
 
                 Destroy(collectibleItem);
@@ -95,6 +101,19 @@ public class Player : MonoBehaviour {
             Debug.Log(e);
         }
     }
+    int CheckItemOnQuestGetIndexQuest(ItemData item){//if given item is not on quest, this will return -1
+        int index = 0;
+        foreach (Quest quest in questListData.quests){
+            if(item == quest.itemData) return index;
+            index ++;
+        }
+        return -1;
+    }
+    bool IsQuestFinished(int questIndex){
+        if(questListData.quests[questIndex].amountGiven == questListData.quests[questIndex].amountNeed) return true;
+        return false;
+    }
+    // PARTICLE SYSTEM
     void CreateDust(){
         dust.Play();
     }

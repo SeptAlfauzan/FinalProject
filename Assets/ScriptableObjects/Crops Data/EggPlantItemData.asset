@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabData: {fileID: 1000011817031034, guid: 92417dd2b68fd6147a711fb2af4275b1, type: 3}
   icon: {fileID: 2800000, guid: 179b969a2e31f5b4e85b2c94e2aac635, type: 3}
+  prize: 8

@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Quest List Info
   m_EditorClassIdentifier: 
   quests:
-  - plant: {fileID: 11400000, guid: 7c13d9281ccfd6843bc056b7dee6fe98, type: 2}
+  - itemData: {fileID: 11400000, guid: 9a859f6528e03b34981372c3f3ba1888, type: 2}
     amountNeed: 10
     amountGiven: 0
     dayDeadline: 14
     completed: 0
-  - plant: {fileID: 11400000, guid: c97a739e3ee00b244a015d1253d265c4, type: 2}
-    amountNeed: 23
+  - itemData: {fileID: 11400000, guid: 0d9ae9d72a4b37542957a5fd9ee6e446, type: 2}
+    amountNeed: 5
     amountGiven: 0
     dayDeadline: 24
-    completed: 0
+    completed: 1

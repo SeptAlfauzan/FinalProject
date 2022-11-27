@@ -32,9 +32,11 @@ public class ChangeScene : MonoBehaviour
     private void Update() {
         // if(plants.Length != GameObject.FindGameObjectsWithTag("Plant").Length) plants = GameObject.FindGameObjectsWithTag("Plant");
         if(isOnArea){
+            //ZOOM to location
             enterText.gameObject.SetActive(true);
             if(Input.GetKey(KeyCode.E)) MoveScene(moveToSceneName); 
         }else{
+            // ZOOM OUT
             enterText.gameObject.SetActive(false);
         }
     }

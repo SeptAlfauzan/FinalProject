@@ -14,6 +14,7 @@ public class IndicatorUIController : MonoBehaviour
         int dayIndex = sceneInfo.gameTime % 7;
         dayTimeText.text = Mathf.Floor(sceneInfo.dayTime) + ":00";
         dayNameText.text = dayNames[dayIndex];
+        moneyText.text = sceneInfo.money.ToString();
     }
 
 }

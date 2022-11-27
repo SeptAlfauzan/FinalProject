@@ -15,3 +15,4 @@ MonoBehaviour:
   prefabData: {fileID: 1000013410243764, guid: 56b36da289d9a9e4cb37c5f588e23748, type: 3}
   icon: {fileID: 2800000, guid: ca699676ff155d644bbacf06f0b508a0, type: 3}
   fruitPrefab: {fileID: 1000014111768446, guid: 2cf13a738fc434c46bda5ebf7ca44756, type: 3}
+  prize: 12

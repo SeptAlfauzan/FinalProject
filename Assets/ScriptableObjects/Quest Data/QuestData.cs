@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class Quest{
-    public PlantItemData plant;
+    public ItemData itemData;
     public int amountNeed;
     public int amountGiven;
     public int dayDeadline;

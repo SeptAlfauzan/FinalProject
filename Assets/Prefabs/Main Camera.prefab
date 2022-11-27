@@ -391,7 +391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   offset: {x: 10, y: 8, z: -10}
-  zoomOffset: {x: 0, y: 0, z: 0}
+  zoomOffset: {x: -5, y: -2, z: 5}
   smoothTime: 0.75
   planeBoundary: {fileID: 0}
 --- !u!114 &4905374294539321153

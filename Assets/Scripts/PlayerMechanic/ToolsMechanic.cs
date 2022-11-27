@@ -38,7 +38,10 @@ public class ToolsMechanic : MonoBehaviour
             if(lastUsedAnimation == "Sickle") sickle.SetActive(true);
             if(lastUsedAnimation == "watering") wateringCan.SetActive(true);
             if(lastUsedAnimation == "Digging") shove.SetActive(true);
+            // ZOOM THE CAMERA
+            Camera.main.GetComponent<FollowPlayer>().SetIsZoom(true);
         }else{
+            Camera.main.GetComponent<FollowPlayer>().SetIsZoom(false);
             HideTools();
         }
 

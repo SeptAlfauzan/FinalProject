@@ -14,11 +14,15 @@ public class FollowPlayer : MonoBehaviour
     private Vector3 _currentVelocity = Vector3.zero;
     private Dictionary<string, Vector3> planeBoundaryPos;
     private bool isZooming = false;
+    private bool isPlayerOnDialog = false;
     private void Start() {
         if(planeBoundary) planeBoundaryPos = GetBoundaryPositions();
     }    
     public void SetIsZoom(bool status){
         isZooming = status;
+    }
+    public void SetIsPlayerOnDialog(bool status){
+        isPlayerOnDialog = status;
     }
     // Update is called once per frame
     void LateUpdate(){
