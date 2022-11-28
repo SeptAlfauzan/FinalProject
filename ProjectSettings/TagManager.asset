@@ -13,6 +13,7 @@ TagManager:
   - Tools
   - Wall
   - Collectible Fruit
+  - Enemies
   layers:
   - Default
   - TransparentFX

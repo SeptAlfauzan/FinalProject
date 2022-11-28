@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3346716}
   - component: {fileID: 2312670}
   - component: {fileID: 6468634}
+  - component: {fileID: 2564881195202535757}
   m_Layer: 0
   m_Name: Fence Type4 Small
   m_TagString: Untagged
@@ -96,3 +97,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 6a52aea886ff71343a7b3ac3ec6dfd92, type: 3}
+--- !u!208 &2564881195202535757
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102524}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 1.6680001, y: 0.98700005, z: 0.18200001}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -1.432, y: 0.98700005, z: 0.007}
+  m_TimeToStationary: 0.5

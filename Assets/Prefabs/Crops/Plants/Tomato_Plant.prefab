@@ -97,17 +97,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantAge: 0
-  growTime: 60
+  growTime: 2
   maxSize: 2
   harvestTime: 0
   tempHarvestTime: 0
-  maxHarvestTime: 70
+  maxHarvestTime: 2
   isMaxSize: 0
   isMaxHarvestTime: 0
   hasFruit: 0
   plantItemData: {fileID: 11400000, guid: 7c13d9281ccfd6843bc056b7dee6fe98, type: 2}
   fruitSpawnPoint: {fileID: 3312404332363528428}
   isWatered: 0
+  lastDayWatered: 0
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
 --- !u!65 &-3301143356790842271
 BoxCollider:
