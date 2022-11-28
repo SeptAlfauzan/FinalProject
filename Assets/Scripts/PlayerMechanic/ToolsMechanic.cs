@@ -22,9 +22,9 @@ public class ToolsMechanic : MonoBehaviour
         this.GetComponent<Animator>().SetBool("IsWatering", false);
         this.GetComponent<Animator>().SetBool("IsDigging", false);
 
-        if(Input.GetKey(KeyCode.C)) UseTool("hoe");
-        if(Input.GetKey(KeyCode.V)) UseTool("water");
-        if(Input.GetKey(KeyCode.B)) UseTool("sickle");
+        if(Input.GetKeyDown(KeyCode.C)) UseTool("hoe");
+        if(Input.GetKeyDown(KeyCode.V)) UseTool("water");
+        if(Input.GetKeyDown(KeyCode.B)) UseTool("sickle");
 
         if(this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PickUp")){
             this.GetComponent<Player>().canMove = false;
@@ -76,17 +76,19 @@ public class ToolsMechanic : MonoBehaviour
     }
     void UseTool(string actionName){
         isUsingTools = true;
-        
+        // "Sickle"
+        // "watering"
+        // "Digging"
         if(actionName == "sickle"){
-            DecreaseStamina(6);
+            if(!CheckIsAnimationStillPlaying("Sickle")) DecreaseStamina(6);
             AnimateSikle();
         } 
         if(actionName == "hoe"){
-            DecreaseStamina(6);
+            if(!CheckIsAnimationStillPlaying("Digging")) DecreaseStamina(6);
             AnimateDigging();
         }
         if(actionName == "water"){
-            DecreaseStamina(3);
+            if(!CheckIsAnimationStillPlaying("watering")) DecreaseStamina(3);
             AnimateWatering();
         }
     }

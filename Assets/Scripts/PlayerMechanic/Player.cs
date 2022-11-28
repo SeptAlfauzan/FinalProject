@@ -15,11 +15,18 @@ public class Player : MonoBehaviour {
     float slowDown = 1;
     [SerializeField] private GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
+
+    [Header("Particle System Object ")]
     [SerializeField] ParticleSystem coinParticle;
     [SerializeField] ParticleSystem rainParticle;
     // SCRIPTABLE OBJ
+    [Header("Scriptable Object")]
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] QuestData questListData;
+    // AUDIO
+    [Header("Audio SFX")]
+    [SerializeField] AudioSource grassFootStep;
+    [SerializeField] AudioSource footStep;
     public bool canMove = true;
     private Inventory inventory;
     private void Start() {
@@ -35,10 +42,14 @@ public class Player : MonoBehaviour {
         if(Input.GetKey(KeyCode.LeftShift) && sceneInfo.playerStamina > 0.15f) isWalking = false;
         slowDown = isWalking?  0.3f : 1;
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;
-
+// running / walking stuff goes here
         if(canMove) this.transform.Translate(movement, Space.World);
         AnimateRunOrWalk(movement.magnitude, isWalking);
-
+        if(movement.magnitude > 0){
+            PlaySFXFootStep();
+            CreateDust();
+        }
+//end section
         Vector3 normalizeMovement = movement.normalized;
         RotateBasedOnDirection(normalizeMovement);
 //control mechanic
@@ -129,6 +140,8 @@ public class Player : MonoBehaviour {
     void CreateDust(){
         dust.Play();
     }
-    
-   
+    // SFX GOES HERE
+    void PlaySFXFootStep(){
+        if(!footStep.isPlaying) footStep.Play();
+    }
 }
