@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TomatoSeedBagItemData
   m_EditorClassIdentifier: 
   prefabData: {fileID: 1000013832410636, guid: 323e5d46aea633c42bfadb66b36971d8, type: 3}
-  icon: {fileID: 2800000, guid: 11e9c8515ca25aa44bfaffd228cdf797, type: 3}
+  icon: {fileID: 2800000, guid: 3690e9c51f983fc408204a0e19025ca4, type: 3}
+  prize: 14

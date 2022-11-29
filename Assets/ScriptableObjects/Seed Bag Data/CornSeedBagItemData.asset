@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: CornSeedBagItemData
   m_EditorClassIdentifier: 
   prefabData: {fileID: 1000012235373026, guid: 1c8776a0b36cd9a4f813bf0d2d59d109, type: 3}
-  icon: {fileID: 2800000, guid: 11e9c8515ca25aa44bfaffd228cdf797, type: 3}
+  icon: {fileID: 2800000, guid: 45e3f1f7202c1b640b4330f9e565a90d, type: 3}
+  prize: 12

@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] Animator animator;
     float slowDown = 1;
-    [SerializeField] private GameObject collectibleItem = null;
+    [SerializeField] public GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
 
     [Header("Particle System Object ")]
@@ -29,6 +29,9 @@ public class Player : MonoBehaviour {
     [SerializeField] AudioSource footStep;
     public bool canMove = true;
     private Inventory inventory;
+
+    [Header("Save Plant State Controller")]
+    [SerializeField] SavePlantController savePlantController;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
         if(sceneInfo.lifePoint <= 0) Debug.Log("Game Over");
@@ -134,6 +137,8 @@ public class Player : MonoBehaviour {
         sceneInfo.dayTime = 6;
         sceneInfo.playerStamina = 0.7f;
         sceneInfo.lifePoint -= 1;
+
+        if(SceneManager.GetActiveScene().name == "Farm") savePlantController.SaveCurrentData();
         SceneManager.LoadScene("Home");
     }
     // PARTICLE SYSTEM

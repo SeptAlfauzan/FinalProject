@@ -107,6 +107,7 @@ MonoBehaviour:
   plantItemData: {fileID: 0}
   fruitSpawnPoint: {fileID: 0}
   isWatered: 0
+  lastDayWatered: 0
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
 --- !u!65 &5672975629677494679
 BoxCollider:

@@ -29041,14 +29041,25 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: cf60632141a02f64f9000bf855051e25, type: 2}
     itemName: Pumpkin Seed
     itemPrize: 12
+    seedBag: {fileID: 6093102394419139505, guid: bab60f99651596549a75424dedbc9ebf, type: 3}
   - itemData: {fileID: 11400000, guid: a69f9fef61c0c804d8c6b54659aa7cff, type: 2}
     itemName: Tomato Seed
-    itemPrize: 11
+    itemPrize: 12
+    seedBag: {fileID: 6093102394419139505, guid: a2385592e44957f438df0f32ef30cdf9, type: 3}
+  - itemData: {fileID: 11400000, guid: 6e3901a4f24005a49b29002df3e25f7e, type: 2}
+    itemName: Corn Seed
+    itemPrize: 12
+    seedBag: {fileID: 6093102394419139505, guid: cc75b8887f26d1d40a709e83ff241d2b, type: 3}
+  - itemData: {fileID: 11400000, guid: 46eb125f3775bba4cabaf9862fa070eb, type: 2}
+    itemName: Carrot Seed
+    itemPrize: 12
+    seedBag: {fileID: 6093102394419139505, guid: 19bcb817dc61a9147b98aecd524c525c, type: 3}
   containerMenu: {fileID: 379224586}
   canvasHUD: {fileID: 2100793410}
   areaMarket: {fileID: 59087489}
   marketMenuUI: {fileID: 51650960}
   prefabMenuListButton: {fileID: 6164401659078128601, guid: e51276c69ab8cc5499c0d438b2cf0988, type: 3}
+  player: {fileID: 1251225095}
 --- !u!4 &675499937
 Transform:
   m_ObjectHideFlags: 0
@@ -53265,6 +53276,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1133638854028844565, guid: 046749c632119ab46bceac4f44cce7be, type: 3}
   m_PrefabInstance: {fileID: 1251225092}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1251225095 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1133638854028844555, guid: 046749c632119ab46bceac4f44cce7be, type: 3}
+  m_PrefabInstance: {fileID: 1251225092}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251225093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28886f9b37537c74aa09e99e969fe52a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1252080138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 515144151564686627, guid: f82ec2f7ccf833540947ba343a46f303, type: 3}
@@ -75360,7 +75382,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae470ef0676d35f459ef8290427acc83, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.92401
+      value: -12.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae470ef0676d35f459ef8290427acc83, type: 3}
       propertyPath: m_LocalPosition.y
@@ -75368,7 +75390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae470ef0676d35f459ef8290427acc83, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 33.301212
+      value: -18.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: ae470ef0676d35f459ef8290427acc83, type: 3}
       propertyPath: m_LocalRotation.w
@@ -75426,7 +75448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb0fe0d13f78484d804aefd39f5a38d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textDialog: 'Be careful! '
+  textDialog: Be careful! When night, some animals might came to your farm.
   dialogNpcController: {fileID: 567439041}
   player: {fileID: 1251225093}
 --- !u!95 &1765917975
