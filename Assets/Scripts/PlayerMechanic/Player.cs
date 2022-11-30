@@ -13,7 +13,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] Animator animator;
     float slowDown = 1;
-    [SerializeField] private GameObject collectibleItem = null;
+    [SerializeField] public GameObject collectibleItem = null;
     [SerializeField] private Dictionary<string, CollectibleItem> itemsInBag = new Dictionary<string, CollectibleItem>();
 
     [Header("Particle System Object ")]
@@ -29,17 +29,23 @@ public class Player : MonoBehaviour {
     [SerializeField] AudioSource footStep;
     public bool canMove = true;
     private Inventory inventory;
+
+    [Header("Save Plant State Controller")]
+    [SerializeField] SavePlantController savePlantController;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
         if(sceneInfo.lifePoint <= 0) Debug.Log("Game Over");
     }
     // Update is called once per frame
     private void Update() {
+        // Debug.Log(Input.GetButton("R Analog X"));
+        // Debug.Log(Input.GetButton("R2"));
+
         isWalking = true;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        if(Input.GetKey(KeyCode.LeftShift) && sceneInfo.playerStamina > 0.15f) isWalking = false;
+        if(Input.GetButton("Toggle Run") && sceneInfo.playerStamina > 0.15f) isWalking = false;
         slowDown = isWalking?  0.3f : 1;
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;
 // running / walking stuff goes here
@@ -134,6 +140,8 @@ public class Player : MonoBehaviour {
         sceneInfo.dayTime = 6;
         sceneInfo.playerStamina = 0.7f;
         sceneInfo.lifePoint -= 1;
+
+        if(SceneManager.GetActiveScene().name == "Farm") savePlantController.SaveCurrentData();
         SceneManager.LoadScene("Home");
     }
     // PARTICLE SYSTEM

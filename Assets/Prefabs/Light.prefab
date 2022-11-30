@@ -110,5 +110,5 @@ MonoBehaviour:
   Preset: {fileID: 11400000, guid: d79a18c8949769d42be6956f94c42b5b, type: 2}
   TimeOfDay: 6
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
-  timeScale: 30
+  timeScale: 60
   rainParticle: {fileID: 0}

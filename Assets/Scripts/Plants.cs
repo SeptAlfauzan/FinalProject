@@ -23,9 +23,11 @@ public class Plants : MonoBehaviour
     // Start is called before the first frame update
     private void Start(){
         if(lastDayWatered != sceneInfo.gameTime) isWatered = false;
-        // if(isMaxSize == false) StartCoroutine(Grow());
-        // if(isMaxHarvestTime == false && !hasFruit) StartCoroutine(GrowFruit());
-        // BUG OVER HERE
+        if(plantAge >= growTime) isMaxSize = true;
+        if(harvestTime >= maxHarvestTime) isMaxHarvestTime = true;
+
+        if(!isWatered && sceneInfo.isRain) Watered();
+
         GameObject player = GameObject.FindGameObjectWithTag("Player");     
         Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());
     }

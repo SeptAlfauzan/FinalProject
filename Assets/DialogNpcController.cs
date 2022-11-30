@@ -23,6 +23,6 @@ public class DialogNpcController : MonoBehaviour
         Camera.main.GetComponent<FollowPlayer>().SetIsZoom(true);
     }
     public void Update(){
-        if(Input.GetKeyDown(KeyCode.KeypadEnter) && isOnDialog) EndDialog(); 
+        if((Input.GetKeyDown(KeyCode.KeypadEnter) || Input.GetButtonDown("Interact")) && isOnDialog) EndDialog();
     }
 }

@@ -7,6 +7,7 @@ struct MenuItem{
     public ItemData itemData;
     public string itemName;
     public string itemPrize;
+    public GameObject seedBag;
 }
 public class MarketController : MonoBehaviour
 {
@@ -16,13 +17,19 @@ public class MarketController : MonoBehaviour
     [SerializeField] GameObject areaMarket;
     [SerializeField] GameObject marketMenuUI;
     [SerializeField] GameObject prefabMenuListButton;
+    [SerializeField] Player player;
     private bool isEnterMarket = false;
     private void Start() {
         foreach (MenuItem item in menuItems){
             GameObject menuListButton = prefabMenuListButton;
+            // refactor this
             menuListButton.GetComponent<MarketMenuButton>().itemName = item.itemName;
             menuListButton.GetComponent<MarketMenuButton>().itemPrize = item.itemPrize;
             menuListButton.GetComponent<MarketMenuButton>().itemData = item.itemData;
+            menuListButton.GetComponent<MarketMenuButton>().texture = item.itemData.icon;
+            menuListButton.GetComponent<MarketMenuButton>().player = player;
+            menuListButton.GetComponent<MarketMenuButton>().collectible = item.seedBag;
+            
             Instantiate(menuListButton, containerMenu.transform);
         }
     }
