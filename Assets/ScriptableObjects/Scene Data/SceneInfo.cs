@@ -16,6 +16,7 @@ public class SceneInfo : ScriptableObject {
     
     [Range(0, 5)]
     [SerializeField] public int lifePoint;
+    [SerializeField] public bool isOpenMessage;
   
     public void SetCurrentSceneData(string sceneName, Vector3 lastPos, Dictionary<string, CollectibleItem> items,  Dictionary<string, ItemButton> itemInButtons, List<string> itemNameInInventory){
 

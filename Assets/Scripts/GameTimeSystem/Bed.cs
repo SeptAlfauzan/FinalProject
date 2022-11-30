@@ -10,7 +10,7 @@ public class Bed : MonoBehaviour
     private bool isNearBed = false;
     // Start is called before the first frame update
     private void LateUpdate() {
-        if(Input.GetKey(KeyCode.E)){
+        if(Input.GetButton("Interact")){
             if(isNearBed){
                 if(sceneInfo.dayTime >= 19 || sceneInfo.dayTime <= 1){
                     sceneInfo.gameTime += 1;

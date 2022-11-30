@@ -477,7 +477,9 @@ MonoBehaviour:
   progressBar: {fileID: 4555979772486430781}
   enterText: {fileID: 7132250959092883625}
   enterTextString: test
+  loadingScreen: {fileID: 1033119137998535253, guid: 8ad5339d2a96c9b4ea817fa487187780, type: 3}
   plantLocationData: {fileID: 11400000, guid: d0a9779bd07178a4f9f54c28a3695b0c, type: 2}
+  savePlantController: {fileID: 0}
 --- !u!198 &7657979846499361130
 ParticleSystem:
   m_ObjectHideFlags: 0

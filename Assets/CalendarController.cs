@@ -8,7 +8,8 @@ public class CalendarController : MonoBehaviour
     [SerializeField] GameObject CalendarUI;
     bool isPlayerInteract = false;
     private void Update() {
-        if(isPlayerInteract && Input.GetKeyDown(KeyCode.E)) CalendarUI.SetActive(true);
+        if(isPlayerInteract && Input.GetButton("Interact")) CalendarUI.SetActive(true);
+        if(CalendarUI.isStatic && Input.GetButton("Interact")) CloseCalendar();
     }
     public void CloseCalendar(){
         CalendarUI.SetActive(false);
