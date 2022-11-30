@@ -38,11 +38,14 @@ public class Player : MonoBehaviour {
     }
     // Update is called once per frame
     private void Update() {
+        // Debug.Log(Input.GetButton("R Analog X"));
+        // Debug.Log(Input.GetButton("R2"));
+
         isWalking = true;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        if(Input.GetKey(KeyCode.LeftShift) && sceneInfo.playerStamina > 0.15f) isWalking = false;
+        if(Input.GetButton("Toggle Run") && sceneInfo.playerStamina > 0.15f) isWalking = false;
         slowDown = isWalking?  0.3f : 1;
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;
 // running / walking stuff goes here

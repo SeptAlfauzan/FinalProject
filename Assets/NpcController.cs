@@ -12,7 +12,7 @@ public class NpcController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.E) && isPlayerInteract) StartDialog();
+        if(Input.GetButtonDown("Interact") && isPlayerInteract) StartDialog();
     }
     private void StartDialog(){
         RotateToPlayer();
