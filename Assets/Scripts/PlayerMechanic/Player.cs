@@ -42,7 +42,7 @@ public class Player : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         
-        if(Input.GetButton("Toggle Run") && sceneInfo.playerStamina > 0.15f) isWalking = false;
+        if(Input.GetButton("Toggle Run") && sceneInfo.playerStamina > 15f) isWalking = false;
         slowDown = isWalking?  0.3f : 1;
         
         Vector3 movement = new Vector3(horizontal, 0, vertical) * Time.deltaTime * movementSpeed * slowDown;

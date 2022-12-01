@@ -5,10 +5,11 @@ using UnityEngine;
 public class ToolsMechanic : MonoBehaviour
 {
     
-    [SerializeField] private ParticleSystem hoeSlash;
+    [SerializeField] private ParticleSystem swordSlash;
     [SerializeField] private ParticleSystem sickleSlash;
+    [SerializeField] private ParticleSystem waterSplash;
     [SerializeField] private bool isUsingTools = false;
-    [SerializeField] private GameObject shove;
+    [SerializeField] private GameObject sword;
     [SerializeField] private GameObject wateringCan;
     [SerializeField] private GameObject sickle;
     [SerializeField] private string lastUsedAnimation;
@@ -20,9 +21,9 @@ public class ToolsMechanic : MonoBehaviour
     {
         this.GetComponent<Animator>().SetBool("IsSickle", false);
         this.GetComponent<Animator>().SetBool("IsWatering", false);
-        this.GetComponent<Animator>().SetBool("IsDigging", false);
+        this.GetComponent<Animator>().SetBool("IsSword", false);
 
-        if(Input.GetButtonDown("Using Tool 1")) UseTool("hoe");
+        if(Input.GetButtonDown("Using Tool 1")) UseTool("sword");
         if(Input.GetButtonDown("Using Tool 2")) UseTool("water");
         if(Input.GetButtonDown("Using Tool 3")) UseTool("sickle");
 
@@ -33,11 +34,11 @@ public class ToolsMechanic : MonoBehaviour
         }        
 
         isUsingTools = CheckIsAnimationStillPlaying(lastUsedAnimation);
-
+// sword.SetActive(true);
         if(isUsingTools){
             if(lastUsedAnimation == "Sickle") sickle.SetActive(true);
             if(lastUsedAnimation == "watering") wateringCan.SetActive(true);
-            if(lastUsedAnimation == "Digging") shove.SetActive(true);
+            if(lastUsedAnimation == "Sword") sword.SetActive(true);
             // ZOOM THE CAMERA
             Camera.main.GetComponent<FollowPlayer>().SetIsZoom(true);
         }else{
@@ -61,15 +62,15 @@ public class ToolsMechanic : MonoBehaviour
     void AnimateWatering(){
         HideTools();
         lastUsedAnimation = "watering";
-
+        waterSplash.Play();
         this.GetComponent<Animator>().SetBool("IsWatering", true);
     }
-    void AnimateDigging(){
+    void AnimateSword(){
         HideTools();
-        lastUsedAnimation = "Digging";
+        lastUsedAnimation = "Sword";
         
-        hoeSlash.Play();
-        this.GetComponent<Animator>().SetBool("IsDigging", true);
+        // sickleSlash.Play();
+        this.GetComponent<Animator>().SetBool("IsSword", true);
     }
     bool CheckIsAnimationStillPlaying(string name){
         return this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(name)? true : false;
@@ -83,9 +84,9 @@ public class ToolsMechanic : MonoBehaviour
             if(!CheckIsAnimationStillPlaying("Sickle")) DecreaseStamina(6);
             AnimateSikle();
         } 
-        if(actionName == "hoe"){
-            if(!CheckIsAnimationStillPlaying("Digging")) DecreaseStamina(6);
-            AnimateDigging();
+        if(actionName == "sword"){
+            if(!CheckIsAnimationStillPlaying("Sword")) DecreaseStamina(0);
+            AnimateSword();
         }
         if(actionName == "water"){
             if(!CheckIsAnimationStillPlaying("watering")) DecreaseStamina(3);
@@ -94,27 +95,18 @@ public class ToolsMechanic : MonoBehaviour
     }
     void HideTools(){
         wateringCan.SetActive(false);
-        shove.SetActive(false);
+        sword.SetActive(false);
         sickle.SetActive(false);
     }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Plant") {
             if(isUsingTools && lastUsedAnimation == "Sickle"){
-                //decrease stamina
-                // emit particle
-                // destroy plant game object
                 Destroy(other.gameObject);
             }
             if(isUsingTools && lastUsedAnimation == "watering"){
                 //decrease stamina
                 // emit particle
                 other.gameObject.GetComponent<Plants>().Watered();
-                // check if plant position same as watered location
-                // if(!tileSystem) return;
-                // if(other.transform.position == GetWateredPlantLocation()){
-                //     //watered that plant
-                // }
-
             }
         }
     }
@@ -142,9 +134,9 @@ public class ToolsMechanic : MonoBehaviour
     }
     private void DecreaseStamina(float staminaUsed){
         if(sceneInfo.playerStamina > 0){
-            float currentStamina = sceneInfo.playerStamina * 100;
+            float currentStamina = sceneInfo.playerStamina;
             currentStamina -= staminaUsed;
-            sceneInfo.playerStamina = currentStamina / 100;
+            sceneInfo.playerStamina = currentStamina;
         }
     }
 }

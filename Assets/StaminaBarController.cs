@@ -8,11 +8,11 @@ public class StaminaBarController : MonoBehaviour
     [SerializeField] private Slider staminaSlider; 
     void Start()
     {
-        staminaSlider.value = sceneInfo.playerStamina;
+        staminaSlider.value = sceneInfo.playerStamina/100;
     }
     // Update is called once per frame
     void Update()
     {
-        staminaSlider.value = sceneInfo.playerStamina;
+        staminaSlider.value = sceneInfo.playerStamina/100;
     }
 }

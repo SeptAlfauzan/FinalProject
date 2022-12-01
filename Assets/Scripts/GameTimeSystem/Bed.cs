@@ -7,21 +7,28 @@ using Random = UnityEngine.Random;
 public class Bed : MonoBehaviour
 {
     [SerializeField] private SceneInfo sceneInfo;
+    [SerializeField] private AlertController alertController;
+    [SerializeField] private GameObject icon;
     private bool isNearBed = false;
     // Start is called before the first frame update
     private void LateUpdate() {
+        if(isNearBed){
+            icon.SetActive(true);
+        }else{
+            icon.SetActive(false);
+        }
         if(Input.GetButton("Interact")){
             if(isNearBed){
-                if(sceneInfo.dayTime >= 19 || sceneInfo.dayTime <= 1){
+                if(sceneInfo.dayTime >= 19 || sceneInfo.dayTime <= 2){
                     sceneInfo.gameTime += 1;
                     sceneInfo.dayTime = 6;
-                    sceneInfo.playerStamina = 1;
+                    sceneInfo.playerStamina = 100;
                     SceneManager.LoadScene("Home");
                 }else{
                     Debug.Log("Masih terlalu dini untuk tidur");
+                    alertController.gameObject.SetActive(true);
+                    alertController.text = "Still too early to sleep.";
                 }
-            }else{
-                Debug.Log("tidak didekat tempat tidur");
             }
         } 
     }

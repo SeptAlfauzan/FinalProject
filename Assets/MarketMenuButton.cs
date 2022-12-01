@@ -4,15 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+public enum ItemBuyedTypes{
+    Seed, Food
+}
 public class MarketMenuButton: MonoBehaviour
 {
     public string itemName; 
+    public ItemBuyedTypes type = ItemBuyedTypes.Seed;
     public string itemPrize;
     public ItemData itemData;
     public RawImage icon;
     public Texture texture;
     [SerializeField] Text itemNameText;
     [SerializeField] Text itemPrizeText;
+    [SerializeField] Text itemEnergyGain;
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] AudioSource moneyClingSFX;
     public Player player;
@@ -27,6 +32,11 @@ public class MarketMenuButton: MonoBehaviour
         itemPrizeText.text = itemPrize;
         icon.texture = texture;
 
+        if(type == ItemBuyedTypes.Food){
+            itemEnergyGain.text = "+" + itemData.energyWhenEat.ToString() + " Energy"; 
+        }else{
+            itemEnergyGain.enabled = false;
+        }
         this.GetComponent<Button>().onClick.AddListener(delegate {
             OnClick();
         });
@@ -41,11 +51,14 @@ public class MarketMenuButton: MonoBehaviour
 
         PlaySFX();
         sceneInfo.money -= itemData.prize;
-        GameObject itemBuyed = Instantiate(collectible);
-        player.collectibleItem = itemBuyed;
-        player.PickUpItem();
-
-        Destroy(itemBuyed);
+        if(type == ItemBuyedTypes.Food){
+            sceneInfo.playerStamina += itemData.energyWhenEat;
+        }else{
+            GameObject itemBuyed = Instantiate(collectible);
+            player.collectibleItem = itemBuyed;
+            player.PickUpItem();
+            Destroy(itemBuyed);
+        }
     }
     private void ShowAlertBuying(){
         alert.SetActive(true);

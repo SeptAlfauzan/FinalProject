@@ -10,6 +10,7 @@ struct MenuItem{
     public string itemName;
     public string itemPrize;
     public GameObject seedBag;
+    public ItemBuyedTypes type;
 }
 public class MarketController : MonoBehaviour
 {
@@ -35,11 +36,12 @@ public class MarketController : MonoBehaviour
             GameObject menuListButton = prefabMenuListButton;
             // refactor this
             menuListButton.GetComponent<MarketMenuButton>().itemName = item.itemName;
-            menuListButton.GetComponent<MarketMenuButton>().itemPrize = item.itemPrize;
+            menuListButton.GetComponent<MarketMenuButton>().itemPrize = item.itemData.prize.ToString() + "Gold";
             menuListButton.GetComponent<MarketMenuButton>().itemData = item.itemData;
             menuListButton.GetComponent<MarketMenuButton>().texture = item.itemData.icon;
             menuListButton.GetComponent<MarketMenuButton>().player = player;
             menuListButton.GetComponent<MarketMenuButton>().collectible = item.seedBag;
+            menuListButton.GetComponent<MarketMenuButton>().type = item.type;
             menuListButton.GetComponent<MarketMenuButton>().alert = alertUI;
             
             GameObject buttonMenu = Instantiate(menuListButton, containerMenu.transform);

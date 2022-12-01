@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CalendarController : MonoBehaviour
 {
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] GameObject CalendarUI;
+    [SerializeField] Text date;
     bool isPlayerInteract = false;
+    private void Start() {
+        
+    }
     private void Update() {
         if(isPlayerInteract && Input.GetButton("Interact")) CalendarUI.SetActive(true);
         if(CalendarUI.isStatic && Input.GetButton("Interact")) CloseCalendar();
+        date.text = sceneInfo.gameTime.ToString();
     }
     public void CloseCalendar(){
         CalendarUI.SetActive(false);
