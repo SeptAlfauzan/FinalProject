@@ -43,7 +43,6 @@ public class SavePlantController : MonoBehaviour
                 ));
             index++;
         }
-        Debug.Log("save plant"+index);
         plantLocationData.SetPlantedLocation(tempPlantedPlants);
     }
 

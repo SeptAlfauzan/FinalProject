@@ -25514,6 +25514,7 @@ MonoBehaviour:
   dialogContainer: {fileID: 1890733525}
   HUD: {fileID: 2100793410}
   dialogText: {fileID: 300287591}
+  closeDialogButton: {fileID: 162821641}
 --- !u!4 &567558048 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 515144151564686627, guid: f82ec2f7ccf833540947ba343a46f303, type: 3}
@@ -29067,6 +29068,8 @@ MonoBehaviour:
   prefabMenuListButton: {fileID: 6164401659078128601, guid: e51276c69ab8cc5499c0d438b2cf0988, type: 3}
   alertUI: {fileID: 1771466457}
   player: {fileID: 1251225095}
+  firstMenuSelected: {fileID: 0}
+  closeButton: {fileID: 2089391596}
 --- !u!4 &675499937
 Transform:
   m_ObjectHideFlags: 0
@@ -87158,7 +87161,7 @@ MonoBehaviour:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
-    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_SelectedColor: {r: 0.9528302, g: 0.5693323, b: 0.25618547, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1

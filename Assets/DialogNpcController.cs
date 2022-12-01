@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DialogNpcController : MonoBehaviour
 {
@@ -9,6 +10,11 @@ public class DialogNpcController : MonoBehaviour
     public GameObject HUD;
     public Text dialogText;
     private bool isOnDialog = false;
+    [SerializeField] GameObject closeDialogButton;
+
+    private void Start() {
+        closeDialogButton.GetComponent<Button>().onClick.AddListener(EndDialog);
+    }
     public void EndDialog(){
         dialogContainer.SetActive(false);
         HUD.SetActive(true);

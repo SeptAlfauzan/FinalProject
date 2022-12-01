@@ -55,7 +55,6 @@ public class ChangeScene : MonoBehaviour
         // SceneManager.LoadScene(sceneName);
         // SceneManager.LoadSceneAsync("asd");
         loadingScreen.LoadScene(sceneName);
-        Debug.Log("build" + SceneManager.GetSceneByName(sceneName).buildIndex);
     }
 
     // private void SaveCurrentData(){

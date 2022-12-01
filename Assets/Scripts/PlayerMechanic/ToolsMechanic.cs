@@ -22,9 +22,9 @@ public class ToolsMechanic : MonoBehaviour
         this.GetComponent<Animator>().SetBool("IsWatering", false);
         this.GetComponent<Animator>().SetBool("IsDigging", false);
 
-        if(Input.GetKeyDown(KeyCode.C)) UseTool("hoe");
-        if(Input.GetKeyDown(KeyCode.V)) UseTool("water");
-        if(Input.GetKeyDown(KeyCode.B)) UseTool("sickle");
+        if(Input.GetButtonDown("Using Tool 1")) UseTool("hoe");
+        if(Input.GetButtonDown("Using Tool 2")) UseTool("water");
+        if(Input.GetButtonDown("Using Tool 3")) UseTool("sickle");
 
         if(this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("PickUp")){
             this.GetComponent<Player>().canMove = false;
