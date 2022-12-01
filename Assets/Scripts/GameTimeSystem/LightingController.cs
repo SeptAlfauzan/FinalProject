@@ -10,11 +10,12 @@ public class LightingController : MonoBehaviour
     //Variables
     [SerializeField, Range(0, 24)] private float TimeOfDay;
     [SerializeField] SceneInfo sceneInfo;
-    [SerializeField] int timeScale = 10;
     [SerializeField] GameObject rainParticle;
     private bool dayChanged = false;
+    private int timeScale;
     private void Start() {
         TimeOfDay = sceneInfo.dayTime;
+        timeScale = sceneInfo.timeScale;
     }
 
     private void Update()
