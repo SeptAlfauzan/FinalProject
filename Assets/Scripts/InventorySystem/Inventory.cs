@@ -43,6 +43,7 @@ public class Inventory : MonoBehaviour
     private int indexStarted = 0;
     private GameObject previousSelectedBorder;
     private GameObject player;
+    private int activeItem = -1;
 
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -88,14 +89,16 @@ public class Inventory : MonoBehaviour
             if(Input.GetKey(KeyCode.LeftShift)){
                 if(Input.GetKeyDown(KeyCode.Alpha1)) DropItemAt(1);
             }else{
-                if(Input.GetKeyDown(KeyCode.Alpha1)) SelectItemAt(1);
-                if(Input.GetKeyDown(KeyCode.Alpha2)) SelectItemAt(2);
-                if(Input.GetKeyDown(KeyCode.Alpha3)) SelectItemAt(3);
-                if(Input.GetKeyDown(KeyCode.Alpha4)) SelectItemAt(4);
-                if(Input.GetKeyDown(KeyCode.Alpha5)) SelectItemAt(5);
-                if(Input.GetKeyDown(KeyCode.Alpha6)) SelectItemAt(6);
+                if(Input.GetKeyDown(KeyCode.Alpha1)) activeItem = 1;
+                if(Input.GetKeyDown(KeyCode.Alpha2)) activeItem = 2;
+                if(Input.GetKeyDown(KeyCode.Alpha3)) activeItem = 3;
+                if(Input.GetKeyDown(KeyCode.Alpha4)) activeItem = 4;
+                if(Input.GetKeyDown(KeyCode.Alpha5)) activeItem = 5;
+                if(Input.GetKeyDown(KeyCode.Alpha6)) activeItem = 6;
+                //GAMEPAD CONTROL
+                GamePadControlItemActive();
             }
-
+            SelectItemAt(activeItem);
 
         } catch (System.Exception e){
             Debug.Log(e.Message);
@@ -108,6 +111,17 @@ public class Inventory : MonoBehaviour
         itemNameInInventory.RemoveAt(index); //remove tracked list name  
         Debug.Log(itemNameInInventory);
         Destroy(buttonObj);
+    }
+    public void GamePadControlItemActive(){
+        Debug.Log("active item " + activeItem);
+        if(Input.GetAxis("R2") == 1){
+            activeItem += 1;
+            if(activeItem >= maximumInventory) activeItem = 1;
+        }
+        if(Input.GetAxis("L2") == 1){
+            activeItem -= 1;
+            if(activeItem <= 1) activeItem = maximumInventory;
+        }
     }
     public void SelectItemAt(int index){
         try{
@@ -126,7 +140,7 @@ public class Inventory : MonoBehaviour
             if(CheckItemPrefabIsPlant(itemGameObject)) player.GetComponent<Planting>().SetItemInHand(itemGameObject);
 
         }catch (System.Exception e){
-            Debug.Log(e);
+            // Debug.Log(e);
         }
     }
     public void StoreToSceneInfo(string sceneName){

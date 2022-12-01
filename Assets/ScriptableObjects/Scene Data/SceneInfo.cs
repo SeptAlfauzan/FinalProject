@@ -11,11 +11,13 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public int gameTime;
     [SerializeField] public int money;
     [SerializeField] public float dayTime;
+    [SerializeField] public int timeScale;
     [SerializeField] public float playerStamina = 1;
     [SerializeField] public bool isRain = false;
     
     [Range(0, 5)]
     [SerializeField] public int lifePoint;
+    [SerializeField] public bool isOpenMessage;
   
     public void SetCurrentSceneData(string sceneName, Vector3 lastPos, Dictionary<string, CollectibleItem> items,  Dictionary<string, ItemButton> itemInButtons, List<string> itemNameInInventory){
 

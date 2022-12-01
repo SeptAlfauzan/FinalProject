@@ -14,6 +14,7 @@ public class ChangeScene : MonoBehaviour
     [SerializeField] private Image progressBar;
     [SerializeField] private TextMesh enterText;
     [SerializeField] private string enterTextString;
+    [SerializeField] private LoadingScreen loadingScreen;
     private GameObject[] plants;
     private List<Plants> plantsBehaviour;
     public PlantLocationData plantLocationData;
@@ -34,7 +35,7 @@ public class ChangeScene : MonoBehaviour
         if(isOnArea){
             //ZOOM to location
             enterText.gameObject.SetActive(true);
-            if(Input.GetKey(KeyCode.E)) MoveScene(moveToSceneName); 
+            if(Input.GetButton("Interact")) MoveScene(moveToSceneName); 
         }else{
             // ZOOM OUT
             enterText.gameObject.SetActive(false);
@@ -51,7 +52,10 @@ public class ChangeScene : MonoBehaviour
     }
     private void MoveScene(string sceneName){
         if(savePlantController) savePlantController.SaveCurrentData();
-        SceneManager.LoadScene(sceneName);
+        // SceneManager.LoadScene(sceneName);
+        // SceneManager.LoadSceneAsync("asd");
+        loadingScreen.LoadScene(sceneName);
+        Debug.Log("build" + SceneManager.GetSceneByName(sceneName).buildIndex);
     }
 
     // private void SaveCurrentData(){

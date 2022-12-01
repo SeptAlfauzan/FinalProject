@@ -39,8 +39,6 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     private void Update() {
         // Debug.Log(Input.GetButton("R Analog X"));
-        // Debug.Log(Input.GetButton("R2"));
-
         isWalking = true;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -59,7 +57,7 @@ public class Player : MonoBehaviour {
         Vector3 normalizeMovement = movement.normalized;
         RotateBasedOnDirection(normalizeMovement);
 //control mechanic
-        if(Input.GetKey(KeyCode.E)) PickUpItem();
+        if(Input.GetButton("Interact")) PickUpItem();
         inventory.InventoryControl();
 // when player stamina is empty
         if(sceneInfo.playerStamina * 100 <= 0 || Mathf.Floor(sceneInfo.dayTime) == 2) Exhausted();

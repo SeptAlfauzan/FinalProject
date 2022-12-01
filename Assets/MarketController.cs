@@ -17,8 +17,10 @@ public class MarketController : MonoBehaviour
     [SerializeField] GameObject areaMarket;
     [SerializeField] GameObject marketMenuUI;
     [SerializeField] GameObject prefabMenuListButton;
+    [SerializeField] GameObject alertUI;
     [SerializeField] Player player;
     private bool isEnterMarket = false;
+    private bool isOpenUI = false;
     private void Start() {
         foreach (MenuItem item in menuItems){
             GameObject menuListButton = prefabMenuListButton;
@@ -29,12 +31,15 @@ public class MarketController : MonoBehaviour
             menuListButton.GetComponent<MarketMenuButton>().texture = item.itemData.icon;
             menuListButton.GetComponent<MarketMenuButton>().player = player;
             menuListButton.GetComponent<MarketMenuButton>().collectible = item.seedBag;
+            menuListButton.GetComponent<MarketMenuButton>().alert = alertUI;
             
             Instantiate(menuListButton, containerMenu.transform);
         }
     }
     private void Update() {
-        if(isEnterMarket && Input.GetKeyDown(KeyCode.E)) SetOpenMenuUI(true);
+        Debug.Log(isEnterMarket);
+        Debug.Log(Input.GetButton("Interact"));
+        if(isEnterMarket && Input.GetButton("Interact")) SetOpenMenuUI(true);
     }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag == "Player") isEnterMarket = true;
@@ -48,6 +53,8 @@ public class MarketController : MonoBehaviour
     private void SetOpenMenuUI(bool status){
         canvasHUD.SetActive(!status);
         marketMenuUI.SetActive(status);
+        isOpenUI = status;
+        Time.timeScale = isOpenUI? 0 : 1;
     }
     public void CloseMenuUI(){
         SetOpenMenuUI(false);

@@ -20,7 +20,7 @@ public class QuestContainerController : MonoBehaviour
         }
     }
     private void Update() {
-        if(Input.GetKeyDown(KeyCode.T)){
+        if(Input.GetButtonDown("Task")){
             parentContainer.SetActive(!isActive);
             isActive = !isActive;
             Time.timeScale = Time.timeScale == 1? 0 : 1;
