@@ -113,7 +113,6 @@ public class Inventory : MonoBehaviour
         Destroy(buttonObj);
     }
     public void GamePadControlItemActive(){
-        Debug.Log("active item " + activeItem);
         if(Input.GetAxis("R2") == 1){
             activeItem += 1;
             if(activeItem >= maximumInventory) activeItem = 1;

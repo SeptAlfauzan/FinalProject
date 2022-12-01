@@ -263,6 +263,8 @@ MonoBehaviour:
   questListContainer: {fileID: 3085389860876378520}
   parentContainer: {fileID: 5292916961075224434}
   questData: {fileID: 11400000, guid: fe11a31bb1f274449b90414521674a97, type: 2}
+  firstQuestButton: {fileID: 0}
+  exitButton: {fileID: 5954589019780349896}
 --- !u!1 &1518499630207106323
 GameObject:
   m_ObjectHideFlags: 0
@@ -982,7 +984,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &2974912274742053559
 MonoBehaviour:

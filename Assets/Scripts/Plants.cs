@@ -18,10 +18,15 @@ public class Plants : MonoBehaviour
     public bool isWatered;
     public int lastDayWatered;
     public SceneInfo sceneInfo;
-
+    [Header("Icon UI")]
+    [SerializeField] Texture2D waterIcon;
+    [SerializeField] Texture2D fruitIcon;
+    [SerializeField] GameObject iconUIPrefab;
 
     // Start is called before the first frame update
     private void Start(){
+        if(isWatered && !hasFruit) iconUIPrefab.SetActive(false); // icon indicator
+
         if(lastDayWatered != sceneInfo.gameTime) isWatered = false;
         if(plantAge >= growTime) isMaxSize = true;
         if(harvestTime >= maxHarvestTime) isMaxHarvestTime = true;
@@ -99,7 +104,19 @@ public class Plants : MonoBehaviour
         // startNewFruitCycle = hasFruit? true : false;
         // harvestTime = hasFruit? 0 : harvestTime;
 
-        // if(isMaxHarvestTime == false) StartCoroutine(GrowFruit());
+        if(isWatered && !hasFruit){
+            iconUIPrefab.gameObject.SetActive(false);
+        }
+
+        if(!isWatered || hasFruit){
+            iconUIPrefab.SetActive(true);
+            if(hasFruit){
+                iconUIPrefab.GetComponent<InteractableIconController>().iconTexture = fruitIcon;
+            }else{
+                iconUIPrefab.GetComponent<InteractableIconController>().iconTexture = waterIcon;
+            }
+        }
+
         if(!isMaxSize) return;
         if(!isMaxHarvestTime) return;
         if(hasFruit) return;

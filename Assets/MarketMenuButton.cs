@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class MarketMenuButton: MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class MarketMenuButton: MonoBehaviour
     public Player player;
     public GameObject collectible;
     public GameObject alert;
+
+    [Header("Input System Buttons")]
+    [SerializeField] GameObject closeAlertButton;
     
     void Start(){
         itemNameText.text = itemName;
