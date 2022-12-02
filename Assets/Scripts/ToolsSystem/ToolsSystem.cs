@@ -3,44 +3,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[System.Serializable]
+public struct ToolButton{
+    public string nameTool;
+    public GameObject gamePadButton;
+    public GameObject keyboardButton;
+}
 public class ToolsSystem : MonoBehaviour
 {
-    private GameObject[] tools;
-    private List<Toggle> toolButtons;
-    [SerializeField] private int activeItem = 0;
-    void Start()
-    {
-        tools = GameObject.FindGameObjectsWithTag("Tools");
-        ActivateOneAndDisableRestButton(activeItem);
-    }
-
+    public List<ToolButton> toolButtons;
+    private bool isControllerConnected = false;
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.C)) ActivateOneAndDisableRestButton(0);
-        if(Input.GetKey(KeyCode.V)) ActivateOneAndDisableRestButton(1);
-        if(Input.GetKey(KeyCode.B)) ActivateOneAndDisableRestButton(2);
+        bool currentControllerConnected = DetectIsControllerConnected();
+        UpdateToolButtonsUI(currentControllerConnected);
+        // if(isControllerConnected != currentControllerConnected){
+        //     isControllerConnected = currentControllerConnected;
+        // }
+        Debug.Log(currentControllerConnected);
     }
 
-    void ActivateOneAndDisableRestButton(int index){
-        Color gray;
-        Color white;
-        ColorUtility.TryParseHtmlString("#676767", out gray);
-        ColorUtility.TryParseHtmlString("#ffffff", out white);
-        activeItem = index;
-
-        int i = 0;
-        foreach (GameObject tool in tools){
-            if(i == index){
-                tool.GetComponent<Image>().color = Color.white;
+    bool DetectIsControllerConnected(){
+        return Input.GetJoystickNames()[0] == ""? false : true; 
+    }
+    void UpdateToolButtonsUI(bool isJoyStickConnected){
+        foreach (ToolButton toolButton in toolButtons){
+            if(isJoyStickConnected){
+                toolButton.keyboardButton.SetActive(false);
+                toolButton.gamePadButton.SetActive(true);
             }else{
-                tool.GetComponent<Image>().color = Color.gray;
+                toolButton.keyboardButton.SetActive(true);
+                toolButton.gamePadButton.SetActive(false);
             }
-            i += 1;
         }
-    }
-
-    public int GetActiveItem(){
-        return activeItem;
     }
 }

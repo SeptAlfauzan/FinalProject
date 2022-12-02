@@ -16,6 +16,10 @@ public class ToolsMechanic : MonoBehaviour
     [SerializeField] private TileSystem tileSystem;
     [SerializeField] private GameObject wateredLocation;
     [SerializeField] private SceneInfo sceneInfo;
+    [Header("SFX")]
+    [SerializeField] private AudioSource swingSFX;
+    [SerializeField] private AudioSource impactSFX;
+    [SerializeField] private AudioSource wateringSFX;
     // Update is called once per frame
     void Update()
     {
@@ -57,19 +61,22 @@ public class ToolsMechanic : MonoBehaviour
         lastUsedAnimation = "Sickle";
 
         sickleSlash.Play();
+        if(!swingSFX.isPlaying) swingSFX.Play();
         this.GetComponent<Animator>().SetBool("IsSickle", true);
     }
     void AnimateWatering(){
         HideTools();
         lastUsedAnimation = "watering";
         waterSplash.Play();
+        if(!wateringSFX.isPlaying) wateringSFX.Play();
         this.GetComponent<Animator>().SetBool("IsWatering", true);
     }
     void AnimateSword(){
         HideTools();
         lastUsedAnimation = "Sword";
         
-        // sickleSlash.Play();
+        sickleSlash.Play();
+        if(!swingSFX.isPlaying) swingSFX.Play();
         this.GetComponent<Animator>().SetBool("IsSword", true);
     }
     bool CheckIsAnimationStillPlaying(string name){
