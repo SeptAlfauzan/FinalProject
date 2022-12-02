@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Collectible : MonoBehaviour//keep individual item
 {
     // Start is called before the first frame update
     [SerializeField] string nameItem;

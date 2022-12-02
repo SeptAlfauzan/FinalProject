@@ -14,13 +14,11 @@ public class InteractableIconController : MonoBehaviour
     [Header("Properties UI")]
     public Texture2D iconTexture;
     [SerializeField] RawImage iconImageTexture;
-    void Start()
-    {
-        iconImageTexture.texture = iconTexture;
-    }
     // Update is called once per frame
     void Update()
     {
+        if(iconImageTexture.texture != iconTexture) iconImageTexture.texture = iconTexture;
+        
         Vector3 pos = Camera.main.WorldToScreenPoint(lookAt.position + offset);
         if(transform.position != pos) transform.position = pos;   
     }

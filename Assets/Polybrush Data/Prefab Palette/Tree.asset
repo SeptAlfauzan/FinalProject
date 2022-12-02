@@ -95,7 +95,7 @@ MonoBehaviour:
     name: Fir_v1_1
   - gameObject: {fileID: 1975661288262788, guid: 97fa5d2e177822c4084dda50fa0986c6, type: 3}
     settings:
-      m_Strength: 24.012499
+      m_Strength: 48.25
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 151.23712, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}

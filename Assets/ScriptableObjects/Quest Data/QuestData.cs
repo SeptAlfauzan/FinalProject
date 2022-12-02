@@ -9,6 +9,7 @@ public class Quest{
     public int amountGiven;
     public int dayDeadline;
     public bool completed;
+    public bool notCompleted;
 }
 
 [CreateAssetMenu(fileName = "Quest List Info")]

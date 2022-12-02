@@ -20,10 +20,27 @@ public class TileSystem : MonoBehaviour
     private bool canPlanting = false;
     [SerializeField] private Vector3 plantingOffset;
     public PlantLocationData plantLocationData;
+    private Planting playerPlanting;
+    [Header("Inventory")]
+    [SerializeField] Inventory inventory;
     // Update is called once per frame
+    private void Start() {
+        playerPlanting = player.GetComponent<Planting>();
+    }
     private void Update(){
-        plantObject = player.GetComponent<Planting>().GetItemInHand();
-        if(plantObject) canPlanting = true;
+        try
+        {
+            if(playerPlanting.itemInHand.GetItemLength() <= 0){
+                player.GetComponent<Inventory>().DropItemAt(playerPlanting.itemInHandInventoryIndex);
+                playerPlanting.itemInHand = null;
+            }
+            plantObject = playerPlanting.GetItemInHandObj();
+            if(plantObject) canPlanting = true;
+        }
+        catch (System.Exception e)
+        {
+            // Debug.Log(e.Message);
+        }
     }
     private void OnMouseOver() {
         // Debug.Log("asdasd");
@@ -80,7 +97,11 @@ public class TileSystem : MonoBehaviour
                 Vector3 gridpos = SnapObjCoordinateToGrid(hit.point);
                 plantObject = Instantiate(plantObject, this.transform);
                 plantObject.transform.position = activeCellPos + plantingOffset;
-                Debug.Log(activeCell);
+                playerPlanting.itemInHand.SetItemLength(playerPlanting.itemInHand.GetItemLength() - 1);//decrease item amount in inventory
+                if(playerPlanting.itemInHand.GetItemLength() <= 0){
+                    inventory.DropItemAt(playerPlanting.itemInHandInventoryIndex);
+                    playerPlanting.itemInHand = null;
+                }
             }
         }
 

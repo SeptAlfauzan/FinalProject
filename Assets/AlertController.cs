@@ -5,10 +5,12 @@ using UnityEngine.UI;
 
 public class AlertController : MonoBehaviour
 {
-    [SerializeField] string text;
+    [SerializeField] public string text;
     [SerializeField] Text textObj;
+    public GameObject closeButton;
     private void Start() {
         textObj.text = text;
+        closeButton.GetComponent<Button>().onClick.AddListener(Close);
     }
     public void Close(){
         this.gameObject.SetActive(false);

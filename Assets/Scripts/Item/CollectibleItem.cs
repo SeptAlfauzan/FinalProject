@@ -1,5 +1,5 @@
 
-public class CollectibleItem
+public class CollectibleItem//keep multi item (inventory used)
 {
     int length;
     ItemData itemData;
