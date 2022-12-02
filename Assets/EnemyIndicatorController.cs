@@ -8,6 +8,7 @@ public class EnemyIndicatorController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(!enemy) return;
         var lookPos = enemy.transform.position - transform.position;
         lookPos.y = 0;
         var rotation = Quaternion.LookRotation(lookPos);

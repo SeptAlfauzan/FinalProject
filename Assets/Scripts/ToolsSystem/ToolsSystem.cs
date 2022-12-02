@@ -25,7 +25,13 @@ public class ToolsSystem : MonoBehaviour
     }
 
     bool DetectIsControllerConnected(){
-        return Input.GetJoystickNames()[0] == ""? false : true; 
+        try{
+            return Input.GetJoystickNames()[0] == ""? false : true; 
+        }
+        catch (System.Exception)
+        {
+            return false;
+        }
     }
     void UpdateToolButtonsUI(bool isJoyStickConnected){
         foreach (ToolButton toolButton in toolButtons){
