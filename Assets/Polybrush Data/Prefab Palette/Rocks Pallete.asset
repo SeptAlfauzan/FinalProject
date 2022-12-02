@@ -15,7 +15,7 @@ MonoBehaviour:
   prefabs:
   - gameObject: {fileID: 4491829996521353806, guid: 3b3d0165ee94d62478ec761e85cd4817, type: 3}
     settings:
-      m_Strength: 50
+      m_Strength: 1
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 42.676865, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}
@@ -31,7 +31,7 @@ MonoBehaviour:
     name: Rock_1
   - gameObject: {fileID: 6526915966272974945, guid: d6c21ab0691f7fc499cb6f13edddac63, type: 3}
     settings:
-      m_Strength: 46
+      m_Strength: 52.75
       m_RotationRangeMin: {x: 0, y: 0, z: 0}
       m_RotationRangeMax: {x: 0, y: 23.403442, z: 0}
       m_ScaleRangeMin: {x: 1, y: 1, z: 1}

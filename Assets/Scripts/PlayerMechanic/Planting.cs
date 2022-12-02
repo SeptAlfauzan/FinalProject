@@ -2,11 +2,17 @@ using System.Collections;
 using UnityEngine;
 public class Planting : MonoBehaviour
 {
-    [SerializeField] private GameObject itemInHand;
-    public GameObject GetItemInHand(){
-        return itemInHand;
+    [SerializeField] public ItemButton itemInHand;
+    [SerializeField] public GameObject itemInHandObj;
+    [SerializeField] public int itemInHandInventoryIndex;
+    public GameObject GetItemInHandObj(){
+        return itemInHand.dataItem.GetItemData().prefabData;
     }
-    public void SetItemInHand(GameObject itemInHand){
+    public int GetItemInHandLength(){
+        return itemInHand.GetItemLength();
+    }
+    public void SetItemInHand(ItemButton itemInHand, int itemIndexInventory){
         this.itemInHand = itemInHand;
+        this.itemInHandInventoryIndex = itemIndexInventory; 
     }
 }

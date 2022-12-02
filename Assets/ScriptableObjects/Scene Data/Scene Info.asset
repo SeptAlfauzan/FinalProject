@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: Scene Info
   m_EditorClassIdentifier: 
   itemNameInInventory: []
-  gameTime: 1
-  money: 909
-  dayTime: 17.343513
+  gameTime: 87
+  money: 1310
+  dayTime: 7.426498
   timeScale: 10
-  playerStamina: 0.94
+  playerStamina: 91
   isRain: 0
-  lifePoint: 5
+  lifePoint: -4
   isOpenMessage: 0

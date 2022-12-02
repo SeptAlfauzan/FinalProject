@@ -22,6 +22,7 @@ public class ItemButton{
 
         GameObject numberTextContainerObj = this.button.transform.GetChild(1).gameObject;
         numberTextContainerObj.SetActive(true);//set active gameobject
+        numberTextContainerObj.transform.GetChild(0).gameObject.GetComponent<TextMeshProUGUI>().text = this.dataItem.GetLength().ToString();
     }
     public int GetItemLength(){
         return dataItem.GetLength();
@@ -58,6 +59,7 @@ public class Inventory : MonoBehaviour
     }
     public void Add(string key, Collectible collectible){
         int numberItem = this.items.ContainsKey(key)? items[key].GetLength() + 1 : 1;
+        Debug.Log(numberItem);
                 // int numberItem = 1;
         if(numberItem == 1){
             CollectibleItem collectibleItem = new CollectibleItem(numberItem, collectible.itemData);
@@ -66,6 +68,8 @@ public class Inventory : MonoBehaviour
             GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
             this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
             this.itemNameInInventory.Add(key);
+            this.items[key].SetLength(numberItem);
+            this.itemInButtons[key].SetItemLength(numberItem);
         }else{
             this.items[key].SetLength(numberItem);
             this.itemInButtons[key].SetItemLength(numberItem);
@@ -87,7 +91,7 @@ public class Inventory : MonoBehaviour
     public void InventoryControl(){
         try{
             if(Input.GetKey(KeyCode.LeftShift)){
-                if(Input.GetKeyDown(KeyCode.Alpha1)) DropItemAt(1);
+                if(Input.GetKeyDown(KeyCode.Alpha1)) DropItemAt(0);
             }else{
                 if(Input.GetKeyDown(KeyCode.Alpha1)) activeItem = 1;
                 if(Input.GetKeyDown(KeyCode.Alpha2)) activeItem = 2;
@@ -105,10 +109,11 @@ public class Inventory : MonoBehaviour
         }
     }
     public void DropItemAt(int index){
-        index -= 1;
         string itemName = itemNameInInventory[index];
         GameObject buttonObj = itemInButtons[itemName].button;//get button game object
         itemNameInInventory.RemoveAt(index); //remove tracked list name  
+        itemInButtons.Remove(itemName); //remove tracked list name  
+        items.Remove(itemName); //remove tracked list name  
         Debug.Log(itemNameInInventory);
         Destroy(buttonObj);
     }
@@ -136,7 +141,7 @@ public class Inventory : MonoBehaviour
             previousSelectedBorder = selectedBorder;
 
             GameObject itemGameObject = itemInButtons[itemName].dataItem.GetItemData().prefabData;
-            if(CheckItemPrefabIsPlant(itemGameObject)) player.GetComponent<Planting>().SetItemInHand(itemGameObject);
+            if(CheckItemPrefabIsPlant(itemGameObject)) player.GetComponent<Planting>().SetItemInHand(itemInButtons[itemName], index);
 
         }catch (System.Exception e){
             // Debug.Log(e);
@@ -156,11 +161,10 @@ public class Inventory : MonoBehaviour
         GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
         this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
 
-        if(numberItem > 1) this.itemInButtons[key].SetItemLength(numberItem);
+        this.itemInButtons[key].SetItemLength(numberItem);
        }
     }
     private bool CheckItemPrefabIsPlant(GameObject gameObject){
-        Debug.Log("select item" + gameObject.tag);
         return gameObject.tag == "Plant"? true : false; 
     }
 }

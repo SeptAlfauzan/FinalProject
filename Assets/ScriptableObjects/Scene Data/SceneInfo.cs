@@ -12,7 +12,8 @@ public class SceneInfo : ScriptableObject {
     [SerializeField] public int money;
     [SerializeField] public float dayTime;
     [SerializeField] public int timeScale;
-    [SerializeField] public float playerStamina = 1;
+    [Range(0, 100)]
+    [SerializeField] public float playerStamina = 100;
     [SerializeField] public bool isRain = false;
     
     [Range(0, 5)]

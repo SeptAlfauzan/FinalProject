@@ -8,4 +8,5 @@ public class ItemData : ScriptableObject
     public GameObject prefabData;
     public Texture icon;
     public int prize;
+    public int energyWhenEat = 0;
 }
