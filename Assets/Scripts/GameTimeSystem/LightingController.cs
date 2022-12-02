@@ -97,7 +97,6 @@ public class LightingController : MonoBehaviour
     }
     private bool RainWheater(){
         int rInt = Random.Range(0, 100);
-        Debug.Log(rInt);
         return rInt >= 60? true : false;
     }
 }

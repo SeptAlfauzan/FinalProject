@@ -116,6 +116,11 @@ public class ToolsMechanic : MonoBehaviour
                 other.gameObject.GetComponent<Plants>().Watered();
             }
         }
+        if(other.gameObject.tag == "Enemies"){
+            if(isUsingTools && lastUsedAnimation == "Sword"){
+                Destroy(other.gameObject);
+            }
+        }
     }
     private void OnTriggerStay(Collider other) {
         if(other.gameObject.tag == "Plant") {
@@ -133,6 +138,11 @@ public class ToolsMechanic : MonoBehaviour
                 //     //watered that plant
                 // }
 
+            }
+        }
+        if(other.gameObject.tag == "Enemies"){
+            if(isUsingTools && lastUsedAnimation == "Sword"){
+                Destroy(other.gameObject);
             }
         }
     }

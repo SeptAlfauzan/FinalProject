@@ -28,17 +28,23 @@ public class TileSystem : MonoBehaviour
         playerPlanting = player.GetComponent<Planting>();
     }
     private void Update(){
-        try
-        {
+
+        try{
             if(playerPlanting.itemInHand.GetItemLength() <= 0){
                 player.GetComponent<Inventory>().DropItemAt(playerPlanting.itemInHandInventoryIndex);
                 playerPlanting.itemInHand = null;
             }
-            plantObject = playerPlanting.GetItemInHandObj();
-            if(plantObject) canPlanting = true;
-        }
-        catch (System.Exception e)
-        {
+
+            if(playerPlanting.GetItemInHandObj() != null){
+                plantObject = playerPlanting.GetItemInHandObj();
+                canPlanting = true;
+            }else{
+                canPlanting = false;
+                plantObject = null;
+
+                Debug.Log("asdasdasdasdasdasd");
+            }
+        }catch (System.Exception e){
             // Debug.Log(e.Message);
         }
     }
@@ -65,7 +71,6 @@ public class TileSystem : MonoBehaviour
                     activeCell = currentCell;
                     activeCellPos = currentCellPosition;
                 }
-
             }
         }
 
@@ -88,6 +93,8 @@ public class TileSystem : MonoBehaviour
 
     private void OnMouseDown() {
         
+        if(!playerPlanting.GetItemInHandObj()) canPlanting = false;
+
         if(canPlanting){
             Vector3 mouse = Input.mousePosition;
             Ray castPoint = Camera.main.ScreenPointToRay(mouse);
@@ -103,8 +110,8 @@ public class TileSystem : MonoBehaviour
                     playerPlanting.itemInHand = null;
                 }
             }
+        }else{
+            tilemap.SetTile(activeCell, null);
         }
-
-
     }
 }

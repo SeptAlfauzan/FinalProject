@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31781c14f7f9b5b47b257ca02c0421a2, type: 3}
-  m_Name: Scene Info
+  m_Name: Initial Scene Info
   m_EditorClassIdentifier: 
   itemNameInInventory: []
-  gameTime: 102
-  money: 1310
-  dayTime: 0.43880934
-  timeScale: 10
-  playerStamina: 97
+  gameTime: 1
+  money: 100
+  dayTime: 6
+  timeScale: 20
+  playerStamina: 100
   isRain: 1
   lifePoint: 5
   isOpenMessage: 0

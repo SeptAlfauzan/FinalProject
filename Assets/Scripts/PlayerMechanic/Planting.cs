@@ -6,6 +6,7 @@ public class Planting : MonoBehaviour
     [SerializeField] public GameObject itemInHandObj;
     [SerializeField] public int itemInHandInventoryIndex;
     public GameObject GetItemInHandObj(){
+        if(itemInHand == null) return null;
         return itemInHand.dataItem.GetItemData().prefabData;
     }
     public int GetItemInHandLength(){

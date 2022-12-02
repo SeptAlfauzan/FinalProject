@@ -1,17 +1,23 @@
 using UnityEngine.Audio;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 
 public class SettingsMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
 
     public GameObject SettingMenuUI;
+    public AudioMixer mainMixer;
+    [Header("Button Event System")]
+    [SerializeField] GameObject firstButton;
+    [SerializeField] GameObject previousCanvas;
 
+    private void Awake() {
+        Debug.Log("asdad");
+    }
     private void Start() {
         Resume();
     }
-    public AudioMixer mainMixer;
     public void SetVolume(float volume)
     {
         mainMixer.SetFloat("volume",volume);
@@ -19,7 +25,8 @@ public class SettingsMenu : MonoBehaviour
     public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
-        SettingMenuUI.SetActive(true);   
+        SettingMenuUI.SetActive(true);
+        // event system
     }
     public void SetQuality(int qualityIndex)
     {
@@ -30,5 +37,14 @@ public class SettingsMenu : MonoBehaviour
         SettingMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
+    }
+
+    public void Back(){
+        SettingMenuUI.SetActive(false);
+        previousCanvas.SetActive(true);
+    }
+    private void OnEnable() {
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstButton);
     }
 }

@@ -21,7 +21,6 @@ public class ToolsSystem : MonoBehaviour
         // if(isControllerConnected != currentControllerConnected){
         //     isControllerConnected = currentControllerConnected;
         // }
-        Debug.Log(currentControllerConnected);
     }
 
     bool DetectIsControllerConnected(){

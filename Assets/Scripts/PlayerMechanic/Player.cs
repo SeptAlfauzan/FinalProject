@@ -32,12 +32,20 @@ public class Player : MonoBehaviour {
 
     [Header("Save Plant State Controller")]
     [SerializeField] SavePlantController savePlantController;
+    [Header("Enemy Indicator")]
+    [SerializeField] GameObject enemyIndicatorPrefab;
+    [SerializeField] GameObject enemyIndicatorContainer;
+    [SerializeField] List<GameObject> instantiatedEnemyIndicators;
+    
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
         if(sceneInfo.lifePoint <= 0) Debug.Log("Game Over");
     }
     // Update is called once per frame
     private void Update() {
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
+        ShowEnemyIndicator(enemies);
+
         isWalking = true;
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
@@ -88,8 +96,7 @@ public class Player : MonoBehaviour {
     }
     // interaction
     public void PickUpItem(){
-        try
-        {
+        try{
             if(collectibleItem){
                 Collectible collectible = collectibleItem.GetComponent<Collectible>();
 
@@ -136,7 +143,7 @@ public class Player : MonoBehaviour {
     private void Exhausted(){
         sceneInfo.gameTime += 2;
         sceneInfo.dayTime = 6;
-        sceneInfo.playerStamina = 0.7f;
+        sceneInfo.playerStamina = 70f;
         sceneInfo.lifePoint -= 1;
 
         if(SceneManager.GetActiveScene().name == "Farm") savePlantController.SaveCurrentData();
@@ -149,5 +156,25 @@ public class Player : MonoBehaviour {
     // SFX GOES HERE
     void PlaySFXFootStep(){
         if(!footStep.isPlaying) footStep.Play();
+    }
+
+    void ShowEnemyIndicator(GameObject[] enemies){
+        if(enemies.Length == 0) ClearEnemyIndicator();
+        if(enemies.Length != instantiatedEnemyIndicators.Count){
+            
+            ClearEnemyIndicator();
+            foreach (var enemy in enemies){
+                GameObject newIndicator = Instantiate(enemyIndicatorPrefab, enemyIndicatorContainer.transform);
+                newIndicator.GetComponent<EnemyIndicatorController>().enemy = enemy;
+                instantiatedEnemyIndicators.Add(newIndicator);
+            }
+        }
+    }
+
+    void ClearEnemyIndicator(){
+        foreach (var indicator in instantiatedEnemyIndicators){
+            Destroy(indicator);
+        }
+        instantiatedEnemyIndicators.Clear();
     }
 }
