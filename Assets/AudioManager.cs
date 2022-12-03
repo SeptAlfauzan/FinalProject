@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -8,8 +9,10 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioSource nightBGM;
     [SerializeField] AudioSource dayBGM;
     [SerializeField] AudioSource villageDayBGM;
+    [SerializeField] AudioSource forestBGM;
     [SerializeField] AudioSource rainBGM;
     [SerializeField] SceneInfo sceneInfo;
+
     float initialVolume = 1;
     float muteVolume = 0;
     Coroutine currentCoroutine;
@@ -43,17 +46,21 @@ public class AudioManager : MonoBehaviour
         }
 
         if(sceneInfo.dayTime >= 5 && sceneInfo.dayTime <= 17){
-            if(!villageDayBGM.isPlaying){
-                currentBgm = villageDayBGM;
-                villageDayBGM.volume = initialVolume;
-                villageDayBGM.Play();
+            if(SceneManager.GetActiveScene().name == "Village") currentBgm = villageDayBGM;
+            if(SceneManager.GetActiveScene().name == "Forest") currentBgm = forestBGM;
+            if(SceneManager.GetActiveScene().name == "Farm" || SceneManager.GetActiveScene().name == "Home") currentBgm = dayBGM;
+            
+
+            if(!currentBgm.isPlaying){
+                currentBgm.volume = initialVolume;
+                currentBgm.Play();
             }
         }else{
-            if(villageDayBGM.volume == initialVolume) currentCoroutine = StartCoroutine(FadeOutAudio(villageDayBGM, 1));
+            if(currentBgm.volume == initialVolume) currentCoroutine = StartCoroutine(FadeOutAudio(currentBgm, 1));
 
-            if(villageDayBGM.volume <= muteVolume + 0.05f){
+            if(currentBgm.volume <= muteVolume + 0.05f){
                 StopCoroutine(currentCoroutine);
-                villageDayBGM.Stop();
+                currentBgm.Stop();
             }
         }
         

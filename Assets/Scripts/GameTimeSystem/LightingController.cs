@@ -56,6 +56,17 @@ public class LightingController : MonoBehaviour
 
     private void UpdateLighting(float timePercent)
     {
+        Debug.Log(timePercent);
+        if(SceneManager.GetActiveScene().name != "Home"){
+            if(timePercent > 0.3f && timePercent < 0.7f){
+                DirectionalLight.intensity = 1;
+            }else{
+                float currentIntensity = DirectionalLight.intensity;
+                Debug.Log(currentIntensity);
+                DirectionalLight.intensity = Mathf.Clamp(1 - (timePercent - 0.01f), 0.5f, 1f);
+            }
+        }
+        // DirectionalLight.intensity = Mathf.Clamp(DirectionalLight.intensity - 0.1f, 0.1f, 1f);
         //Set ambient and fog
         RenderSettings.ambientLight = Preset.AmbientColor.Evaluate(timePercent);
         RenderSettings.fogColor = Preset.FogColor.Evaluate(timePercent);

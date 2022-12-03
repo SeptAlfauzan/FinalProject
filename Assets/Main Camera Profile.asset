@@ -9,15 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31781c14f7f9b5b47b257ca02c0421a2, type: 3}
-  m_Name: Scene Info
+  m_Script: {fileID: 11500000, guid: d7fd9488000d3734a9e00ee676215985, type: 3}
+  m_Name: Main Camera Profile
   m_EditorClassIdentifier: 
-  itemNameInInventory: []
-  gameTime: 127
-  money: 1269
-  dayTime: 9.301399
-  timeScale: 10
-  playerStamina: 70
-  isRain: 1
-  lifePoint: -4
-  isOpenMessage: 0
+  components: []

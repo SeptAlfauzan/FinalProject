@@ -19,6 +19,7 @@ public class MarketController : MonoBehaviour
     [SerializeField] GameObject canvasHUD;
     [SerializeField] GameObject areaMarket;
     [SerializeField] GameObject marketMenuUI;
+    [SerializeField] GameObject inventoryUI;
     [SerializeField] GameObject prefabMenuListButton;
     [SerializeField] GameObject alertUI;
     [SerializeField] Player player;
@@ -62,8 +63,10 @@ public class MarketController : MonoBehaviour
         if(other.gameObject.tag == "Player") isEnterMarket = false;
     }
     private void SetOpenMenuUI(bool status){
-        canvasHUD.SetActive(!status);
+        // canvasHUD.SetActive(!status);
+        // if(status) inventoryUI.SetActive(true);
         marketMenuUI.SetActive(status);
+
         isOpenUI = status;
         Time.timeScale = isOpenUI? 0 : 1;
 

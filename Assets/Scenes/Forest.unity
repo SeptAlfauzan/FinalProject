@@ -48245,7 +48245,7 @@ PrefabInstance:
     - target: {fileID: 1133638854028844555, guid: 046749c632119ab46bceac4f44cce7be, type: 3}
       propertyPath: enemyIndicatorPrefab
       value: 
-      objectReference: {fileID: 1618775735}
+      objectReference: {fileID: 605431464079919156, guid: a0842e4dbc4729241969aafc8ab53abc, type: 3}
     - target: {fileID: 1133638854028844565, guid: 046749c632119ab46bceac4f44cce7be, type: 3}
       propertyPath: m_Name
       value: MainCharacter Backup
@@ -64668,11 +64668,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f82ec2f7ccf833540947ba343a46f303, type: 3}
---- !u!1 &1618775735 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5791261480437412362, guid: 046749c632119ab46bceac4f44cce7be, type: 3}
-  m_PrefabInstance: {fileID: 1251225092}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1619010369 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 515144151564686627, guid: f82ec2f7ccf833540947ba343a46f303, type: 3}
