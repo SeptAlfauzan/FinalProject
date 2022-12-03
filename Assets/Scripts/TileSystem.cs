@@ -45,7 +45,7 @@ public class TileSystem : MonoBehaviour
                 Debug.Log("asdasdasdasdasdasd");
             }
         }catch (System.Exception e){
-            // Debug.Log(e.Message);
+            Debug.Log(e.Message);
         }
     }
     private void OnMouseOver() {

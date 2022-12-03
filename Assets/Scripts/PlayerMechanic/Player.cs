@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     [Header("Audio SFX")]
     [SerializeField] AudioSource grassFootStep;
     [SerializeField] AudioSource footStep;
+    [SerializeField] AudioSource damagedSfx;
     public bool canMove = true;
     private Inventory inventory;
 
@@ -176,5 +177,13 @@ public class Player : MonoBehaviour {
             Destroy(indicator);
         }
         instantiatedEnemyIndicators.Clear();
+    }
+
+    private void OnCollisionEnter(Collision other) {
+        if(other.gameObject.tag == "Enemies"){
+            // if(damagedSfx.isPlaying  ) damagedSfx.Stop();
+            damagedSfx.Play();
+            sceneInfo.playerStamina -= 10;
+        }
     }
 }
