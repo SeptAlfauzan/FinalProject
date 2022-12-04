@@ -12,9 +12,11 @@ public class MainMenu : MonoBehaviour
     [Header("Button Event System")]
     [SerializeField] GameObject firstButton;
 
-    [Header("Scene Info Data")]
+    [Header("Scene and Quest Info Data")]
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] SceneInfo initialSceneInfo;
+    [SerializeField] QuestData questData;
+    [SerializeField] QuestData initialQuestData;
     
     private void Start() {
         EventSystem.current.SetSelectedGameObject(null);
@@ -57,5 +59,11 @@ public class MainMenu : MonoBehaviour
         sceneInfo.isRain = initialSceneInfo.isRain;
         sceneInfo.lifePoint = initialSceneInfo.lifePoint;
         sceneInfo.isOpenMessage = initialSceneInfo.isOpenMessage;
+        
+        foreach (Quest quest in questData.quests){
+            quest.amountGiven = 0;
+            quest.completed = false;
+            quest.notCompleted = false;
+        }
     }
 }

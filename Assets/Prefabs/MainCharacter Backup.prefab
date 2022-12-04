@@ -898,11 +898,11 @@ MonoBehaviour:
   runFootStep: {fileID: 3389840733732604063}
   damagedSfx: {fileID: 3691793235868022086}
   canMove: 1
-  savePlantController: {fileID: 0}
   enemyIndicatorPrefab: {fileID: 605431464079919156, guid: a0842e4dbc4729241969aafc8ab53abc, type: 3}
   enemyIndicatorContainer: {fileID: 269191958357627406}
   instantiatedEnemyIndicators: []
   pauseMenu: {fileID: 0}
+  exhaustedUIController: {fileID: 0}
 --- !u!114 &1133638854028844554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6125,7 +6125,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 884456ad87ec27941b0a98d176f33dcb, type: 2}
   m_audioClip: {fileID: 8300000, guid: dcd0e89494793844c981ef9c9b6dfe45, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

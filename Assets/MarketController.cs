@@ -37,7 +37,7 @@ public class MarketController : MonoBehaviour
             GameObject menuListButton = prefabMenuListButton;
             // refactor this
             menuListButton.GetComponent<MarketMenuButton>().itemName = item.itemName;
-            menuListButton.GetComponent<MarketMenuButton>().itemPrize = item.itemData.prize.ToString() + "Gold";
+            menuListButton.GetComponent<MarketMenuButton>().itemPrize = item.itemData.prize.ToString() + " Gold";
             menuListButton.GetComponent<MarketMenuButton>().itemData = item.itemData;
             menuListButton.GetComponent<MarketMenuButton>().texture = item.itemData.icon;
             menuListButton.GetComponent<MarketMenuButton>().player = player;

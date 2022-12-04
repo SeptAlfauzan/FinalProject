@@ -18,6 +18,6 @@ MonoBehaviour:
   dayTime: 6
   timeScale: 20
   playerStamina: 100
-  isRain: 1
+  isRain: 0
   lifePoint: 5
   isOpenMessage: 0

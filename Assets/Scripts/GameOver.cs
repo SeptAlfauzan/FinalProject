@@ -9,6 +9,7 @@ public class GameOver : MonoBehaviour
     public GameObject gameOverUI;
     [SerializeField] LoadingScreen loadingScreen;
     [SerializeField] GameObject firstButton;
+    [SerializeField] GameObject background;
     [SerializeField] MainMenu mainMenu;
     [SerializeField] QuestData questData;
     [SerializeField] TextMeshProUGUI titleText;
@@ -23,7 +24,6 @@ public class GameOver : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(firstButton);
     }
 
-    // Update is called once per frame
     public void GameOverOn(){
         int completedTask = 0;
         foreach (Quest quest in questData.quests)
@@ -37,6 +37,7 @@ public class GameOver : MonoBehaviour
         Time.timeScale = 0;
         taskCompletedText.text = completedTask.ToString(); 
         gameOverUI.SetActive(true);
+        background.SetActive(true);
     }
     public void ReplayGame(){ 
         mainMenu.ResetSceneInfoData();

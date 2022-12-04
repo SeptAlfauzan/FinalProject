@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemNameInInventory: []
   gameTime: 1
-  money: 970
-  dayTime: 16.182417
+  money: 100
+  dayTime: 9.456795
   timeScale: 20
-  playerStamina: 99.1
+  playerStamina: 100
   isRain: 0
   lifePoint: 5
   isOpenMessage: 0

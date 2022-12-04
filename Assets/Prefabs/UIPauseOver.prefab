@@ -436,7 +436,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 2905552627185631029}
   loadingScreen: {fileID: 0}
-  firstButton: {fileID: 6602792484586410123}
+  firstButton: {fileID: 5434889994699204455}
+  background: {fileID: 5434889994699204455}
   mainMenu: {fileID: 4977234951418125641, guid: fd45dd4e3533f2444bca3c55b8135c34, type: 3}
   questData: {fileID: 11400000, guid: fe11a31bb1f274449b90414521674a97, type: 2}
   titleText: {fileID: 1820874270127773748}
@@ -2039,9 +2040,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7467980639656327921}
-        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: Resume
+      - m_Target: {fileID: 3429991740846328570}
+        m_TargetAssemblyTypeName: GameOver, Assembly-CSharp
+        m_MethodName: ReplayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

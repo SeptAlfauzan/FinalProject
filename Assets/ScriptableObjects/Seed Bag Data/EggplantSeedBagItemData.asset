@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469edc905073d6641aa38ea80f0c4c6e, type: 3}
+  m_Name: EggplantSeedBagItemData
+  m_EditorClassIdentifier: 
+  prefabData: {fileID: 1000012171661116, guid: 97c7589824dbbb24cbc2b95a9345ebb1, type: 3}
+  icon: {fileID: 2800000, guid: 6fabf7db85e90344180eb07523524194, type: 3}
+  prize: 14
+  energyWhenEat: 0

@@ -788,6 +788,8 @@ MonoBehaviour:
   firstButton: {fileID: 4977234949994623419}
   sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}
   initialSceneInfo: {fileID: 11400000, guid: 98c401300a4a33d42b3bb1bf94b6afcd, type: 2}
+  questData: {fileID: 11400000, guid: fe11a31bb1f274449b90414521674a97, type: 2}
+  initialQuestData: {fileID: 0}
 --- !u!1 &4977234951637247945
 GameObject:
   m_ObjectHideFlags: 0

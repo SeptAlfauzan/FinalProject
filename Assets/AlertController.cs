@@ -13,6 +13,7 @@ public class AlertController : MonoBehaviour
         closeButton.GetComponent<Button>().onClick.AddListener(Close);
     }
     public void Close(){
+        Debug.Log("tutup");
         this.gameObject.SetActive(false);
     }
 }

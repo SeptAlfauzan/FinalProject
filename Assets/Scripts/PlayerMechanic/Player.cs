@@ -32,14 +32,15 @@ public class Player : MonoBehaviour {
     public bool canMove = true;
     private Inventory inventory;
 
-    [Header("Save Plant State Controller")]
-    [SerializeField] SavePlantController savePlantController;
     [Header("Enemy Indicator")]
     [SerializeField] GameObject enemyIndicatorPrefab;
     [SerializeField] GameObject enemyIndicatorContainer;
     [SerializeField] List<GameObject> instantiatedEnemyIndicators;
     [Header("Game Over")]
     [SerializeReference] PauseMenu pauseMenu;
+
+    [Header("Behaviours")]
+    [SerializeField] ExhaustedUIController exhaustedUIController;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
     }
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour {
         if(movement.magnitude > 0){
             if(isWalking) PlaySFXFootStep(footStep);
             else  PlaySFXFootStep(runFootStep);
-            
+
             CreateDust();
         }
 //end section
@@ -116,6 +117,9 @@ public class Player : MonoBehaviour {
                     // HERE QUEST SYSTEM WILL RUN
                     int questIndex = CheckItemOnQuestGetIndexQuest(collectible.itemData);
                     if(questIndex != -1){
+                        
+                        if(questListData.quests[questIndex].notCompleted || questListData.quests[questIndex].completed) return;//stop script when quest is failed or completed
+
                         questListData.quests[questIndex].amountGiven += 1;
                         questListData.quests[questIndex].completed = IsQuestFinished(questIndex);
                     }
@@ -147,15 +151,6 @@ public class Player : MonoBehaviour {
         if(questListData.quests[questIndex].amountGiven == questListData.quests[questIndex].amountNeed) return true;
         return false;
     }
-    private void Exhausted(){
-        sceneInfo.gameTime += 2;
-        sceneInfo.dayTime = 6;
-        sceneInfo.playerStamina = 70f;
-        sceneInfo.lifePoint -= 1;
-
-        if(SceneManager.GetActiveScene().name == "Farm") savePlantController.SaveCurrentData();
-        SceneManager.LoadScene("Home");
-    }
     // PARTICLE SYSTEM
     void CreateDust(){
         dust.Play();
@@ -165,6 +160,10 @@ public class Player : MonoBehaviour {
         if(!audioStep.isPlaying) audioStep.Play();
     }
 
+    void Exhausted(){
+        Time.timeScale = 0;
+        exhaustedUIController.gameObject.SetActive(true);
+    }
     void ShowEnemyIndicator(GameObject[] enemies){
         if(enemies.Length == 0) ClearEnemyIndicator();
 
