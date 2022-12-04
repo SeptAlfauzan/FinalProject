@@ -12,7 +12,9 @@ public class EnemySpawnerController : MonoBehaviour
     [SerializeField] int enemySpawnedUnitRange;
     [SerializeField] int currentEnemySpawned;
     [SerializeField] int maxEnemiesSpawnAtSameTIme;
-    [SerializeField] bool hasLimitSpawn;
+    [SerializeField] bool hasLimitSpawn = false;
+    [SerializeField] bool spawnOnlyonNight = false;
+    [SerializeField] SceneInfo sceneInfo;
     private Dictionary<string, Vector3> boundariesPos;
 
     private void Start() {
@@ -21,8 +23,9 @@ public class EnemySpawnerController : MonoBehaviour
     }
 
     private void Update() {
+        if(sceneInfo.dayTime < 18 && spawnOnlyonNight) return;///when time is not night yet, dont spawn enemies;
+        
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
-
         if(enemies.Length < maxEnemiesSpawnAtSameTIme){
             // stop spawn enemy when reach the limit
             if(hasLimitSpawn && currentEnemySpawned >= enemySpawnedUnitRange) return;

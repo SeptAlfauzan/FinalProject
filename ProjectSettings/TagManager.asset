@@ -14,6 +14,7 @@ TagManager:
   - Wall
   - Collectible Fruit
   - Enemies
+  - Enemy Indicator
   layers:
   - Default
   - TransparentFX

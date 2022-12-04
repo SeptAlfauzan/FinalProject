@@ -50,3 +50,5 @@ MonoBehaviour:
   currentEnemySpawned: 0
   maxEnemiesSpawnAtSameTIme: 2
   hasLimitSpawn: 0
+  spawnOnlyonNight: 0
+  sceneInfo: {fileID: 11400000, guid: f631b724a301e4343a67247c9926ecf1, type: 2}

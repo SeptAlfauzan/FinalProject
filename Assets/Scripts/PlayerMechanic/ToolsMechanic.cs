@@ -171,6 +171,10 @@ public class ToolsMechanic : MonoBehaviour
         smokeParticle.Play();
         coinParticle.Play();
 
+        if(!enemyDieSFX.isPlaying) enemyDieSFX.Play();
+        if(!coinSFX.isPlaying) coinSFX.Play();
+
+        sceneInfo.money += 10;//gain 10 gold when kill enemy
         
         Destroy(smokeParticle.gameObject, 1f);
         Destroy(coinParticle.gameObject, 1f);

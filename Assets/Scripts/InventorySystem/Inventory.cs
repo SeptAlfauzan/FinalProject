@@ -143,8 +143,9 @@ public class Inventory : MonoBehaviour
             GameObject itemGameObject = itemInButtons[itemName].dataItem.GetItemData().prefabData;
             if(CheckItemPrefabIsPlant(itemGameObject)) player.GetComponent<Planting>().SetItemInHand(itemInButtons[itemName], index);
 
-        }catch (System.Exception e){
-            Debug.Log(e);
+        }catch (System.Exception){
+            // Debug.Log(e);
+            
         }
     }
     public void StoreToSceneInfo(string sceneName){

@@ -27,6 +27,7 @@ public class Player : MonoBehaviour {
     [Header("Audio SFX")]
     [SerializeField] AudioSource grassFootStep;
     [SerializeField] AudioSource footStep;
+    [SerializeField] AudioSource runFootStep;
     [SerializeField] AudioSource damagedSfx;
     public bool canMove = true;
     private Inventory inventory;
@@ -37,13 +38,16 @@ public class Player : MonoBehaviour {
     [SerializeField] GameObject enemyIndicatorPrefab;
     [SerializeField] GameObject enemyIndicatorContainer;
     [SerializeField] List<GameObject> instantiatedEnemyIndicators;
-    
+    [Header("Game Over")]
+    [SerializeReference] PauseMenu pauseMenu;
     private void Start() {
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
-        if(sceneInfo.lifePoint <= 0) Debug.Log("Game Over");
     }
     // Update is called once per frame
     private void Update() {
+        
+        if(sceneInfo.lifePoint <= 0) pauseMenu.isGameOver = true;
+
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemies");
         ShowEnemyIndicator(enemies);
 
@@ -59,7 +63,9 @@ public class Player : MonoBehaviour {
         if(canMove) this.transform.Translate(movement, Space.World);
         AnimateRunOrWalk(movement.magnitude, isWalking);
         if(movement.magnitude > 0){
-            PlaySFXFootStep();
+            if(isWalking) PlaySFXFootStep(footStep);
+            else  PlaySFXFootStep(runFootStep);
+            
             CreateDust();
         }
 //end section
@@ -155,12 +161,15 @@ public class Player : MonoBehaviour {
         dust.Play();
     }
     // SFX GOES HERE
-    void PlaySFXFootStep(){
-        if(!footStep.isPlaying) footStep.Play();
+    void PlaySFXFootStep(AudioSource audioStep){
+        if(!audioStep.isPlaying) audioStep.Play();
     }
 
     void ShowEnemyIndicator(GameObject[] enemies){
         if(enemies.Length == 0) ClearEnemyIndicator();
+
+        if(GameObject.FindGameObjectsWithTag("Enemy Indicator").Length != instantiatedEnemyIndicators.Count) ClearEnemyIndicator();
+        
         if(enemies.Length != instantiatedEnemyIndicators.Count){
             
             ClearEnemyIndicator();

@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] SceneInfo initialSceneInfo;
     
-    private void Awake() {
+    private void Start() {
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstButton);
     }
@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     {
         ResetSceneInfoData();
         loadingScreen.gameObject.SetActive(true);
+        Time.timeScale = 1f;
         loadingScreen.LoadScene("Home");
     }
 
@@ -43,7 +44,7 @@ public class MainMenu : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(firstButton);
     }
 
-    private void ResetSceneInfoData(){
+    public void ResetSceneInfoData(){
         sceneInfo.items.Clear();// = new Dictionary<string, CollectibleItem>();
         sceneInfo.itemInButtons.Clear(); // = new Dictionary<string, ItemButton>();
         sceneInfo.itemNameInInventory.Clear(); // = null;

@@ -30,9 +30,13 @@ public class NavMeshTest : MonoBehaviour
     private void OnDestroy() {
         // dieSFX.Play();
         ParticleSystem smoke = Instantiate(smokeParticle, this.transform.position + Vector3.zero, Quaternion.Euler(Vector3.zero));
-        
+        AudioSource dieSfx = Instantiate(dieSFX, this.transform.position + Vector3.zero, Quaternion.Euler(Vector3.zero));
+
         smoke.Play();
-        Destroy(smoke.gameObject, 1f);//destroy particle when finished played
+        dieSfx.Play();
+        Debug.Log(dieSfx);
+        Destroy(smoke.gameObject, 3f);//destroy particle when finished played
+        Destroy(dieSfx.gameObject, 1f);//destroy audio when finished played
     }
 
     private Transform GetClosestPlant (GameObject[] plants){
@@ -52,7 +56,6 @@ public class NavMeshTest : MonoBehaviour
         return bestTarget;
     }
     private void OnTriggerEnter(Collider other){
-        Debug.Log(other.gameObject.tag);
         if(other.gameObject.tag == "Plant"){
             Destroy(other.gameObject);
             Destroy(this.gameObject);
