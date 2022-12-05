@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   plantAge: 0
-  growTime: 12
+  growTime: 4
   maxSize: 2
   harvestTime: 0
   tempHarvestTime: 0
-  maxHarvestTime: 14
+  maxHarvestTime: 6
   isMaxSize: 0
   isMaxHarvestTime: 0
   hasFruit: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   gameTime: 1
   money: 100
   dayTime: 6
-  timeScale: 20
+  timeScale: 10
   playerStamina: 100
   isRain: 0
   lifePoint: 5

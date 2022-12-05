@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class Quest{
     public ItemData itemData;
+    public string name;
     public int amountNeed;
     public int amountGiven;
     public int dayDeadline;

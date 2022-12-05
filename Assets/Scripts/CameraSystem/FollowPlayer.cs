@@ -15,6 +15,7 @@ public class FollowPlayer : MonoBehaviour
     private Dictionary<string, Vector3> planeBoundaryPos;
     private bool isZooming = false;
     private bool isPlayerOnDialog = false;
+    Vector3 targetPosition;
     private void Start() {
         if(planeBoundary) planeBoundaryPos = GetBoundaryPositions();
     }    
@@ -26,7 +27,6 @@ public class FollowPlayer : MonoBehaviour
     }
     // Update is called once per frame
     void LateUpdate(){
-        Vector3 targetPosition;
         if(isZooming){
             targetPosition = player.transform.position + offset + zoomOffset;
         }else{
@@ -39,6 +39,23 @@ public class FollowPlayer : MonoBehaviour
         }
         
         Camera.main.transform.position = Vector3.SmoothDamp(Camera.main.transform.position, targetPosition, ref _currentVelocity, smoothTime);
+    }
+    
+    public IEnumerator Shake(float duration, float magnitude)
+    {
+        Vector3 orignalPosition = transform.position;
+        float elapsed = 0f;
+        
+        while (elapsed < duration)
+        {
+            float x = Random.Range(player.transform.position.x, player.transform.position.x + 0.4f) * magnitude;
+            float z = Random.Range(player.transform.position.z, player.transform.position.z + 0.4f) * magnitude;
+
+            transform.position = new Vector3(x, transform.position.y, z);
+            elapsed += Time.deltaTime;
+            yield return 0;
+        }
+        transform.position = targetPosition;
     }
 
     private Dictionary<string, Vector3> GetBoundaryPositions(){

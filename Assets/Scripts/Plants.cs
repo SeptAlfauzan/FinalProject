@@ -33,10 +33,14 @@ public class Plants : MonoBehaviour
 
         if(!isWatered && sceneInfo.isRain) Watered();
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");     
-        Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());
     }
 
+    private void Awake() {
+        GameObject player = GameObject.FindGameObjectWithTag("Player");  
+        Debug.Log(player);   
+        Physics.IgnoreCollision(player.GetComponent<CapsuleCollider>(), GetComponent<BoxCollider>());
+        
+    }
     private IEnumerator Grow(){
         Vector3 startScale = transform.localScale;
         Vector3 maxScale = new Vector3(maxSize, maxSize,maxSize);

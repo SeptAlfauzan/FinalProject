@@ -191,7 +191,11 @@ public class Player : MonoBehaviour {
         if(other.gameObject.tag == "Enemies"){
             // if(damagedSfx.isPlaying  ) damagedSfx.Stop();
             damagedSfx.Play();
-            sceneInfo.playerStamina -= 10;
+            sceneInfo.playerStamina -= 4;
+            
+
+            Vector3 moveDirection = this.transform.position - other.transform.position;
+            this.GetComponent<Rigidbody>().AddForce( moveDirection.normalized * -1000f);
         }
     }
 }

@@ -44,6 +44,9 @@ public class TileSystem : MonoBehaviour
 
                 Debug.Log("asdasdasdasdasdasd");
             }
+
+            if(Input.GetButtonDown("Planting")) PlantSeed();
+
         }catch (System.Exception){
             // Debug.Log(e.Message);
         }
@@ -92,8 +95,12 @@ public class TileSystem : MonoBehaviour
     }
 
     private void OnMouseDown() {
-        
-        if(!playerPlanting.GetItemInHandObj()) canPlanting = false;
+       
+    }
+
+    private void PlantSeed(){
+        Debug.Log("test");
+         if(!playerPlanting.GetItemInHandObj()) canPlanting = false;
 
         if(canPlanting){
             Vector3 mouse = Input.mousePosition;

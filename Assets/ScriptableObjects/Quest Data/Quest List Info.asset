@@ -21,38 +21,44 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 52bd48aecd5cd1f4abf55b5c8f0533ef, type: 2}
   quests:
   - itemData: {fileID: 11400000, guid: 9a859f6528e03b34981372c3f3ba1888, type: 2}
-    amountNeed: 0
+    name: Tomato
+    amountNeed: 2
     amountGiven: 0
-    dayDeadline: 20
+    dayDeadline: 12
     completed: 0
     notCompleted: 0
   - itemData: {fileID: 11400000, guid: 0d9ae9d72a4b37542957a5fd9ee6e446, type: 2}
-    amountNeed: 5
+    name: Pumpkin
+    amountNeed: 1
     amountGiven: 0
-    dayDeadline: 22
+    dayDeadline: 12
     completed: 0
     notCompleted: 0
   - itemData: {fileID: 11400000, guid: 7b83fdb79b99b1b48a37f80dba06577f, type: 2}
-    amountNeed: 10
+    name: Carrot
+    amountNeed: 2
     amountGiven: 0
-    dayDeadline: 22
+    dayDeadline: 12
     completed: 0
     notCompleted: 0
   - itemData: {fileID: 11400000, guid: 52bd48aecd5cd1f4abf55b5c8f0533ef, type: 2}
-    amountNeed: 10
+    name: 
+    amountNeed: 2
     amountGiven: 0
-    dayDeadline: 22
+    dayDeadline: 12
     completed: 0
     notCompleted: 0
   - itemData: {fileID: 11400000, guid: eda5b26eba6bb864c891f3784af7988c, type: 2}
-    amountNeed: 10
-    amountGiven: 10
-    dayDeadline: 41
+    name: 
+    amountNeed: 2
+    amountGiven: 0
+    dayDeadline: 12
     completed: 0
     notCompleted: 0
   - itemData: {fileID: 11400000, guid: 114e1711cee271349a70659bd601b2ab, type: 2}
-    amountNeed: 10
+    name: Egg Plant
+    amountNeed: 3
     amountGiven: 0
-    dayDeadline: 40
+    dayDeadline: 12
     completed: 0
     notCompleted: 0

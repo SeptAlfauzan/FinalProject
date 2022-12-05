@@ -14,6 +14,7 @@ public class QuestContainerController : MonoBehaviour
     [SerializeField] SceneInfo sceneInfo;
     [SerializeField] GameOver gameOver;
     [SerializeField] int failedQuest;
+    [SerializeField] int completeQuest;
     
     [Header("Event System Button Selected")]
     [SerializeField] private GameObject firstQuestButton, exitButton;
@@ -23,7 +24,21 @@ public class QuestContainerController : MonoBehaviour
             isActive = !isActive;
             Time.timeScale = Time.timeScale == 1? 0 : 1;
         }
-        if(failedQuest == questData.quests.Count) gameOver.GameOverOn();
+
+        UpdateCompletedQuests();
+        UpdateFailedQuests();
+
+        // Debug.Log("failed and completed quests" + failedQuest + completeQuest);
+
+        if(failedQuest + completeQuest == questData.quests.Count) gameOver.GameOverOn();
+        if(failedQuest == questData.quests.Count){
+            Debug.Log("failed quest");
+            gameOver.GameOverOn();
+        }
+        if(completeQuest == questData.quests.Count){
+            Debug.Log("completed quest");
+            gameOver.GameOverOn();
+        }
     }
     // for onclick functionality
     public void CloseQuestContainer(){
@@ -49,5 +64,20 @@ public class QuestContainerController : MonoBehaviour
             }
         }
         if(failedQuest != currentFailedQuest) failedQuest = currentFailedQuest;
+    }
+
+    public void UpdateCompletedQuests(){
+        completeQuest = 0;
+        // int currentFailedQuest = 0;
+        foreach(Quest quest in questData.quests){
+            if(quest.completed) completeQuest += 1;
+        }
+    }
+    public void UpdateFailedQuests(){
+        failedQuest = 0;
+        // int currentFailedQuest = 0;
+        foreach(Quest quest in questData.quests){
+            if(quest.notCompleted) failedQuest += 1;
+        }
     }
 }

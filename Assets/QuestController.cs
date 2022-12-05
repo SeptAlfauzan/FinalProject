@@ -14,7 +14,7 @@ public class QuestController : MonoBehaviour {
             QuestButton questButton = questListButton.GetComponent<QuestButton>();
             
             questButton.objectiveItemIconObj.texture = item.itemData.icon;
-            questButton.objectiveTextObj.text = "Sell " + item.amountNeed + " " + item.itemData.name + "s";
+            questButton.objectiveTextObj.text = "Sell " + item.amountNeed + " " + item.name + "s";
             questButton.targetAchievedTextObj.text = item.amountGiven + "/" + item.amountNeed;
             
             buttons.Add(questListButton);

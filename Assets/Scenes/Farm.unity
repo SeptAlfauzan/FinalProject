@@ -16458,6 +16458,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2069796786283044236, guid: ff5a5ae0a72d8e346a28292389257229, type: 3}
+      propertyPath: loadingScreen
+      value: 
+      objectReference: {fileID: 932953779}
+    - target: {fileID: 2069796786283044236, guid: ff5a5ae0a72d8e346a28292389257229, type: 3}
+      propertyPath: savePlantController
+      value: 
+      objectReference: {fileID: 820243681}
     - target: {fileID: 2069796786283044237, guid: ff5a5ae0a72d8e346a28292389257229, type: 3}
       propertyPath: m_Pivot.x
       value: 0

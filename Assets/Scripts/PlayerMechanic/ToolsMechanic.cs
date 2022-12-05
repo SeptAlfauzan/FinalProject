@@ -93,7 +93,7 @@ public class ToolsMechanic : MonoBehaviour
         // "watering"
         // "Digging"
         if(actionName == "sickle"){
-            if(!CheckIsAnimationStillPlaying("Sickle")) DecreaseStamina(6);
+            if(!CheckIsAnimationStillPlaying("Sickle")) DecreaseStamina(15);
             AnimateSikle();
         } 
         if(actionName == "sword"){
@@ -101,7 +101,7 @@ public class ToolsMechanic : MonoBehaviour
             AnimateSword();
         }
         if(actionName == "water"){
-            if(!CheckIsAnimationStillPlaying("watering")) DecreaseStamina(3);
+            if(!CheckIsAnimationStillPlaying("watering")) DecreaseStamina(14);
             AnimateWatering();
         }
     }
