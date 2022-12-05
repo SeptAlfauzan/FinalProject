@@ -11,6 +11,25 @@ public class DialogNpcController : MonoBehaviour
     public Text dialogText;
     private bool isOnDialog = false;
     [SerializeField] GameObject closeDialogButton;
+    [SerializeField] private AudioSource typeWrite;
+    
+
+    public float delay = 0.1f;
+	private string currentText = "";
+	private string dialogString;
+
+	// Use this for initialization
+	void OnEnable () {
+		
+	}
+	
+	IEnumerator ShowText(){
+		for(int i = 0; i < dialogString.Length; i++){
+			currentText = dialogString.Substring(0,i);
+			dialogText.text = currentText;
+			yield return new WaitForSeconds(delay);
+		}
+	}
 
     private void Start() {
         closeDialogButton.GetComponent<Button>().onClick.AddListener(EndDialog);
@@ -23,9 +42,13 @@ public class DialogNpcController : MonoBehaviour
     }
     public void StartDialog(string text){
         HUD.SetActive(false);
-        dialogText.text = text;
+        dialogString = text;
         dialogContainer.SetActive(true);
         isOnDialog = true;
+        
+        if(!typeWrite.isPlaying) typeWrite.Play();
+
+        StartCoroutine(ShowText());
         Camera.main.GetComponent<FollowPlayer>().SetIsZoom(true);
     }
     public void Update(){

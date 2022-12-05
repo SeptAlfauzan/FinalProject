@@ -16,6 +16,8 @@ public class NpcController : MonoBehaviour
     }
     private void StartDialog(){
         RotateToPlayer();
+
+        
         dialogNpcController.StartDialog(textDialog);
     }
     private void OnTriggerEnter(Collider other) {
