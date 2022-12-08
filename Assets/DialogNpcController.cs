@@ -24,11 +24,13 @@ public class DialogNpcController : MonoBehaviour
 	}
 	
 	IEnumerator ShowText(){
+        typeWrite.Play();
 		for(int i = 0; i < dialogString.Length; i++){
 			currentText = dialogString.Substring(0,i);
 			dialogText.text = currentText;
 			yield return new WaitForSeconds(delay);
 		}
+        typeWrite.Stop();
 	}
 
     private void Start() {
@@ -39,6 +41,7 @@ public class DialogNpcController : MonoBehaviour
         HUD.SetActive(true);
         isOnDialog = false;
         Camera.main.GetComponent<FollowPlayer>().SetIsZoom(false);
+        typeWrite.Stop();
     }
     public void StartDialog(string text){
         HUD.SetActive(false);
@@ -46,7 +49,6 @@ public class DialogNpcController : MonoBehaviour
         dialogContainer.SetActive(true);
         isOnDialog = true;
         
-        if(!typeWrite.isPlaying) typeWrite.Play();
 
         StartCoroutine(ShowText());
         Camera.main.GetComponent<FollowPlayer>().SetIsZoom(true);

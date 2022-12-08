@@ -9,6 +9,7 @@ public class Bed : MonoBehaviour
     [SerializeField] private SceneInfo sceneInfo;
     [SerializeField] private AlertController alertController;
     [SerializeField] private GameObject icon;
+    [SerializeField] private LoadingScreen loadingScreen;
     private bool isNearBed = false;
     // Start is called before the first frame update
     private void LateUpdate() {
@@ -23,7 +24,8 @@ public class Bed : MonoBehaviour
                     sceneInfo.gameTime += 1;
                     sceneInfo.dayTime = 6;
                     sceneInfo.playerStamina = 100;
-                    SceneManager.LoadScene("Home");
+
+                    loadingScreen.LoadScene("Home");
                 }else{
                     Debug.Log("Masih terlalu dini untuk tidur");
                     alertController.gameObject.SetActive(true);
@@ -33,12 +35,21 @@ public class Bed : MonoBehaviour
         } 
     }
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.tag == "Player") isNearBed = true;
+        if(other.gameObject.tag == "Player"){
+            isNearBed = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnCollisionStay(Collision other) {
-        if(other.gameObject.tag == "Player") isNearBed = true;
+        if(other.gameObject.tag == "Player"){
+            isNearBed = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnCollisionExit(Collision other) {
-        if(other.gameObject.tag == "Player") isNearBed = false;
+        if(other.gameObject.tag == "Player"){
+            isNearBed = false;
+            other.gameObject.GetComponent<Player>().onArea = false;
+        }
     }
 }

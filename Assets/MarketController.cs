@@ -54,13 +54,22 @@ public class MarketController : MonoBehaviour
         if(isEnterMarket && Input.GetButton("Interact")) SetOpenMenuUI(true);
     }
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") isEnterMarket = true;
+        if(other.gameObject.tag == "Player"){
+            isEnterMarket = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Player") isEnterMarket = true;
+        if(other.gameObject.tag == "Player"){
+            isEnterMarket = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "Player") isEnterMarket = false;
+        if(other.gameObject.tag == "Player"){
+            isEnterMarket = false;
+            other.gameObject.GetComponent<Player>().onArea = false;
+        }
     }
     private void SetOpenMenuUI(bool status){
         // canvasHUD.SetActive(!status);

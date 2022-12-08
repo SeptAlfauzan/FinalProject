@@ -41,11 +41,16 @@ public class Player : MonoBehaviour {
 
     [Header("Behaviours")]
     [SerializeField] ExhaustedUIController exhaustedUIController;
+
+    public bool onArea = false;
+    public GameObject interactIcon;
     private void Start() {
+        interactIcon.SetActive(false);
         inventory =  GameObject.FindGameObjectWithTag("Inventory")? GameObject.FindGameObjectWithTag("Inventory").GetComponent<Inventory>() : null;
     }
     // Update is called once per frame
     private void Update() {
+        interactIcon.SetActive(onArea? true : false);
         
         if(sceneInfo.lifePoint <= 0) pauseMenu.isGameOver = true;
 

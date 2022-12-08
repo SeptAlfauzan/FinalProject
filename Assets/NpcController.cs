@@ -21,13 +21,22 @@ public class NpcController : MonoBehaviour
         dialogNpcController.StartDialog(textDialog);
     }
     private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag == "Player") isPlayerInteract = true;
+        if(other.gameObject.tag == "Player"){
+            isPlayerInteract = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnTriggerStay(Collider other) {
-        if(other.gameObject.tag == "Player") isPlayerInteract = true;
+        if(other.gameObject.tag == "Player"){
+            isPlayerInteract = true;
+            other.gameObject.GetComponent<Player>().onArea = true;
+        }
     }
     private void OnTriggerExit(Collider other) {
-        if(other.gameObject.tag == "Player") isPlayerInteract = false;
+        if(other.gameObject.tag == "Player"){
+            isPlayerInteract = false;
+            other.gameObject.GetComponent<Player>().onArea = false;
+        }
     }
 
     private void RotateToPlayer(){

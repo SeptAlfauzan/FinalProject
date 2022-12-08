@@ -45,7 +45,7 @@ public class Inventory : MonoBehaviour
     private GameObject previousSelectedBorder;
     private GameObject player;
     private int activeItem = -1;
-
+    private int currentInventoryLen = 0;
     private void Start() {
         player = GameObject.FindGameObjectWithTag("Player");
         //get all data from scene info aka temporary storage in order to save data when moving to different scene
@@ -53,6 +53,22 @@ public class Inventory : MonoBehaviour
         this.itemNameInInventory = sceneInfoData.itemNameInInventory;
         // Render item in button data to inventory UI
         RenderItemToUI();
+    }
+
+    private void Update() {
+        // int index = 1;
+        // if(itemInButtons.Count != currentInventoryLen){
+        //     foreach (var itemButton in itemInButtons)
+        //     {
+        //         Debug.Log(index);
+        //         itemInButtons[itemButton.Key].button.gameObject.GetComponent<Button>().onClick.AddListener(delegate {
+        //             activeItem = index;
+        //             Debug.Log(activeItem);
+        //         });
+        //         index++;
+        //     }
+        //     currentInventoryLen = itemInButtons.Count;
+        // }
     }
     public void SetItems(Dictionary<string, CollectibleItem> items){
         this.items = items; 
@@ -152,18 +168,18 @@ public class Inventory : MonoBehaviour
         sceneInfoData.SetCurrentSceneData(sceneName, player.transform.position, this.items, this.itemInButtons, this.itemNameInInventory);
     }
     public void RenderItemToUI(){
-    
-       foreach (string key in itemNameInInventory)
-       {
-        int numberItem = this.items.ContainsKey(key)? items[key].GetLength() : 1;
+        foreach (string key in itemNameInInventory)
+        {
+            int numberItem = this.items.ContainsKey(key)? items[key].GetLength() : 1;
 
-        CollectibleItem collectibleItem = new CollectibleItem(1, sceneInfoData.items[key].GetItemData());
-        //intansiasi button inventory
-        GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
-        this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
+            CollectibleItem collectibleItem = new CollectibleItem(1, sceneInfoData.items[key].GetItemData());
+            //intansiasi button inventory
+            GameObject newItemButton = Instantiate(buttonItemInventory, this.transform);
 
-        this.itemInButtons[key].SetItemLength(numberItem);
-       }
+            this.itemInButtons.Add(key, new ItemButton(collectibleItem, newItemButton));
+
+            this.itemInButtons[key].SetItemLength(numberItem);
+        }
     }
     private bool CheckItemPrefabIsPlant(GameObject gameObject){
         return gameObject.tag == "Plant"? true : false; 

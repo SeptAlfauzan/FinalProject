@@ -41,8 +41,8 @@ public class MarketMenuButton: MonoBehaviour
             OnClick();
         });
     }
+    
     private void OnClick() {
-        Debug.Log("kontol");
         if(sceneInfo.money < itemData.prize){
             ShowAlertBuying();
             return;
